@@ -1,5 +1,5 @@
 /*****************************************************************************/
-document.querySelector(".loaderDad").style.display="none"
+document.querySelector(".loaderDad").style.display="block"
 
 
 
