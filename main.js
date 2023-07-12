@@ -50,11 +50,11 @@ window.onclick=(e)=>{
     addedit()
   }
 
-  if(e.target.id=="setting-img"){
+  if(e.target.classList.value=="setting-img"){
     showSett()
   }
 
-  if(e.target.id=="setting-done"){
+  if(e.target.classList.value=="setting-done"){
     hideSett()
   }
 
