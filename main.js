@@ -128,7 +128,7 @@ await getDoc(doc(db, "accounts", docId)).then(e=>{
 
   document.querySelector(".NameOfPerson").textContent=`Hello ${mainData.username}`
 
-  setTimeout(hideLoading, 1000)
+  setTimeout(hideLoading, 7000)
   function hideLoading(){
     document.querySelector(".loaderDad").style.display="none"
   }
