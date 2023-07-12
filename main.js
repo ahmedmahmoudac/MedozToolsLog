@@ -1,5 +1,5 @@
 /*****************************************************************************/
-document.querySelector(".loaderDad").style.display="none"
+document.querySelector(".loaderDad").style.display="block"
 
 
 
@@ -50,11 +50,11 @@ window.onclick=(e)=>{
     addedit()
   }
 
-  if(e.target.classList.value=="setting-img"){
+  if(e.target.id=="setting-img"){
     showSett()
   }
 
-  if(e.target.classList.value=="setting-done"){
+  if(e.target.id=="setting-done"){
     hideSett()
   }
 
