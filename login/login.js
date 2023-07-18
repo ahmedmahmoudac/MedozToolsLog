@@ -124,8 +124,8 @@ document.querySelector(".btn-sign-up").addEventListener("click",()=>{
 
       /**/
       Swal.fire(
-        'تم انشاء الحساب',
-        'يمكنك الان تسجيل الدخول',
+        'Done Created Your New Account Successfully -تم انشاء حسابك بنجاح ',
+        'You Can Now Log in - يمكنك الان تسجيل الدخول',
         'success'
       )
       /**/
