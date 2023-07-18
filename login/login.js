@@ -51,6 +51,9 @@ document.querySelector(".btn-sign-in").addEventListener("click",async()=>{
         const q = query(collection(db, "accounts"), where("username", "==", `${username}`), where("password", "==", `${password}`));
 
         const querySnapshot = await getDocs(q);
+        if(querySnapshot.docs.length==0){
+            Swal.fire("","Usename Or Password Are Wrong","error");
+        }
         querySnapshot.forEach((doc) => {
             if(doc.data().id!==undefined){
                 document.querySelector(".username-in").value=""
