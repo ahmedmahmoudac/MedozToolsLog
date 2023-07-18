@@ -44,7 +44,7 @@ document.querySelector(".btn-sign-in").addEventListener("click",async()=>{
 
     if (username.trim()!==""&&password.trim()!=="") {
         Swal.fire({
-            title: 'Please Wait! or Usename Or Password Are Wrong',
+            title: 'Please Wait!',
             didOpen: () => {Swal.showLoading()}
         });
 
