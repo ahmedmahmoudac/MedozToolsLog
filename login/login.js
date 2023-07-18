@@ -98,7 +98,7 @@ document.querySelector(".btn-sign-in").addEventListener("click",async()=>{
 
 document.querySelector(".btn-sign-up").addEventListener("click", () => {
     Swal.fire(
-        'Account Creation Disabled For New Users 😥',
+        'Account Creation Disabled 😥',
         'Sorry, account creation is currently disabled for New Users, if you already has an account you can sign in with it. 😥',
         'warning'
     );
