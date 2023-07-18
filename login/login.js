@@ -96,48 +96,54 @@ document.querySelector(".btn-sign-in").addEventListener("click",async()=>{
 
 /* start create account */
 
-document.querySelector(".btn-sign-up").addEventListener("click",()=>{
-    let username = document.querySelector(".username-up").value
-    let password = document.querySelector(".password-up").value
-    let password2 = document.querySelector(".password-up-2").value
-    let email = document.querySelector(".email-up").value
+document.querySelector(".btn-sign-up").addEventListener("click", () => {
+    Swal.fire(
+        'Account Creation Disabled For New Users 😥',
+        'Sorry, account creation is currently disabled for New Users, if you already has an account you can sign in with it. 😥',
+        'warning'
+    );
+});
 
+// document.querySelector(".btn-sign-up").addEventListener("click",()=>{ // Event listener is disabled
+//     let username = document.querySelector(".username-up").value
+//     let password = document.querySelector(".password-up").value
+//     let password2 = document.querySelector(".password-up-2").value
+//     let email = document.querySelector(".email-up").value
 
-    if(username!=""&&password!=""&&password2!=""&&email!=""&&password==password2)
-    {
+//     if(username!=""&&password!=""&&password2!=""&&email!=""&&password==password2)
+//     {
 
-      let id = Math.floor(Math.random() * 100000000);
-      setDoc(doc(db,"accounts",`${id}`),{
-        id: id,
-        username: username,
-        password: password,
-        email: email,
-        time: Date.now(),
-        N:"",
-      });
-  
+//       let id = Math.floor(Math.random() * 100000000);
+//       setDoc(doc(db,"accounts",`${id}`),{
+//         id: id,
+//         username: username,
+//         password: password,
+//         email: email,
+//         time: Date.now(),
+//         N:"",
+//       });
 
-      document.querySelector(".username-up").value=""
-      document.querySelector(".password-up").value=""
-      document.querySelector(".email-up").value=""
-      document.querySelector(".password-up-2").value=""
+//       document.querySelector(".username-up").value=""
+//       document.querySelector(".password-up").value=""
+//       document.querySelector(".email-up").value=""
+//       document.querySelector(".password-up-2").value=""
 
-      /**/
-      Swal.fire(
-        'Done Created Your New Account Successfully -تم انشاء حسابك بنجاح ',
-        'You Can Now Log in - يمكنك الان تسجيل الدخول',
-        'success'
-      )
-      /**/
+//       /**/
+//       Swal.fire(
+//         'Done Created Your New Account Successfully -تم انشاء حسابك بنجاح ',
+//         'You Can Now Log in - يمكنك الان تسجيل الدخول',
+//         'success'
+//       )
+//       /**/
 
-      document.querySelector("#tab-1").click()
+//       document.querySelector("#tab-1").click()
 
-    } else if(username!=""&&password!=password2&&email!="") {
-        Swal.fire("","The Two Password Should be the Same","")
-    } else {
-        Swal.fire("","Enter Username,Password and Email","")
-    }
-})
+//     } else if(username!=""&&password!=password2&&email!="") {
+//         Swal.fire("","The Two Password Should be the Same","")
+//     } else {
+//         Swal.fire("","Enter Username,Password and Email","")
+//     }
+// })
 
 /* end create account */
 
