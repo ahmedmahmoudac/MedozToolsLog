@@ -173,6 +173,7 @@ document.querySelector(".btn-sign-up").addEventListener("click", () => {
       email: email,
       time: Date.now(),
          N:"",
+         Data:"",
        });
 
     document.querySelector(".username-up").value = "";
