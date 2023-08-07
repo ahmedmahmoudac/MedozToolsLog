@@ -1,7 +1,6 @@
 /*****************************************************************************/
-document.querySelector(".loaderDad").style.display="block"
-
-
+//document.querySelector(".loaderDad").style.display="block"
+document.querySelector(".loaderDad").style.cssText = "display: block; background-color: black;";
 
 
 /* start custom function */
