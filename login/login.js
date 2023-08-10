@@ -61,7 +61,7 @@ document.querySelector(".btn-sign-in").addEventListener("click",async()=>{
                 /**/
                 localStorage.setItem("notes-online-id",doc.data().id)
                 /**/
-                location.href="../fix test.html"
+                location.href="../"
             } else {
                 Swal.fire("","Usename Or Password Are Wrong");
             }
