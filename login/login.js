@@ -96,9 +96,9 @@ document.querySelector(".btn-sign-in").addEventListener("click",async()=>{
 document.querySelector(".btn-sign-up").addEventListener("click", () => {
     Swal.fire({
         title: 'Account Creation Disabled 😥',
-        text: 'Sorry, account creation is currently disabled for New Users, if you already have an account you can sign in with it. 😥',
+        text: 'Sorry, account creation is currently disabled, if you need account subscribe medoz pro group you will get account and medoz pro vip group forever for only 100$ fees pay one time only. 😥',
         icon: 'warning',
-        confirmButtonText: 'Subscribe Now',
+        confirmButtonText: 'Subscribe Now 100$',
         showCancelButton: true,
         cancelButtonText: 'Cancel'
     }).then((result) => {
