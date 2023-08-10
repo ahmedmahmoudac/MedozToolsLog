@@ -93,6 +93,20 @@ document.querySelector(".btn-sign-in").addEventListener("click",async()=>{
 
 
 
+document.querySelector(".btn-sign-up").addEventListener("click", () => {
+    Swal.fire({
+        title: 'Account Creation Disabled 😥',
+        text: 'Sorry, account creation is currently disabled for New Users, if you already have an account you can sign in with it. 😥',
+        icon: 'warning',
+        confirmButtonText: 'Subscribe Now',
+        showCancelButton: true,
+        cancelButtonText: 'Cancel'
+    }).then((result) => {
+        if (result.isConfirmed) {
+            window.open('https://t.me/ahmedmahmoudac', '_blank');
+        }
+    });
+});
 
 
 
