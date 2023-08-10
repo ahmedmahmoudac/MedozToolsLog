@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Firebase Login Example</title>
+    <!-- Include Firebase SDK -->
+    <script src="https://www.gstatic.com/firebasejs/9.0.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.0.0/firebase-auth.js"></script>
+    <script>
+        // Initialize Firebase with your project config
+        const firebaseConfig = {
+    apiKey: "AIzaSyA5Oygn4KCqdTHuryzqD4DHUdXCjj8wFfM",
+    authDomain: "file-upload-by-medoz-pro.firebaseapp.com",
+    projectId: "file-upload-by-medoz-pro",
+    storageBucket: "file-upload-by-medoz-pro.appspot.com",
+    messagingSenderId: "575667669315",
+    appId: "1:575667669315:web:b5ce5f7e7b607280dd87f6",
+
+
+
+
+
+
+
+
+        };
+        
+        firebase.initializeApp(firebaseConfig);
+
+        // Function to handle login
+        function login() {
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
+
+            firebase.auth().signInWithEmailAndPassword(email, password)
+                .then((userCredential) => {
+                    // User signed in
+                    const user = userCredential.user;
+                    // Show content for logged-in users
+                    document.getElementById('content').style.display = 'block';
+                })
+                .catch((error) => {
+                    const errorCode = error.code;
+                    const errorMessage = error.message;
+                    alert(errorMessage);
+                });
+        }
+    </script>
+</head>
+<body>
+    <h1>Firebase Login Example</h1>
+    
+    <!-- Login Form -->
+    <div>
+        <label for="email">Email:</label>
+        <input type="email" id="email" required>
+    </div>
+    <div>
+        <label for="password">Password:</label>
+        <input type="password" id="password" required>
+    </div>
+    <div>
+        <button onclick="login()">Login</button>
+    </div>
+    
+    <!-- Content to display after login -->
+    <div id="content" style="display: none;">
+        <h2>Protected Content</h2>
+        <p>This is the protected content that requires login to access.</p>
+    </div>
+</body>
+</html>
