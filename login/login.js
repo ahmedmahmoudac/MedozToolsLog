@@ -59,17 +59,17 @@ document.querySelector(".btn-sign-in").addEventListener("click",async()=>{
                 document.querySelector(".username-in").value=""
                 document.querySelector(".password-in").value=""
                 /**/
-                localStorage.setItem("notes-online-id",doc.data().id)
+    ////            localStorage.setItem("notes-online-id",doc.data().id)
                 /**/
-                location.href="../"
-            } else {
-                Swal.fire("","Usename Or Password Are Wrong");
-            }
-        });
+     ////           location.href="../"
+     ////       } else {
+   ////             Swal.fire("","Usename Or Password Are Wrong");
+   ////         }
+   ////     });
 
-    } else {Swal.fire("","Enter Usename And Password")}
+  ////  } else {Swal.fire("","Enter Usename And Password")}
 
-})
+////})
 
 /*End Sing In*/
 
