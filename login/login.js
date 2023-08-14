@@ -77,61 +77,61 @@ document.querySelector(".btn-sign-in").addEventListener("click",async()=>{
 
 
 
-/*Start Sing In*/
+/* Start Sign In */
 
 document.querySelector(".btn-sign-in").addEventListener("click", async () => {
-    try {
-        const username = document.querySelector(".username-in").value;
-        const password = document.querySelector(".password-in").value;
+    let username = document.querySelector(".username-in").value;
+    let password = document.querySelector(".password-in").value;
 
-        if (username.trim() !== "" && password.trim() !== "") {
-            Swal.fire({
-                title: 'Please Wait!',
-                didOpen: () => { Swal.showLoading() }
-            });
-
-            const q = query(collection(db, "accounts"), where("username", "==", `${username}`), where("password", "==", `${password}`));
-
-            const querySnapshot = await getDocs(q);
-            if (querySnapshot.docs.length === 0) {
-                Swal.fire("", "Username or Password Are Wrong", "error");
+    if (username.trim() !== "" && password.trim() !== "") {
+        Swal.fire({
+            title: 'Please Wait!',
+            didOpen: () => {
+                Swal.showLoading();
             }
+        });
 
-            querySnapshot.forEach(async (doc) => {
-                if (doc.data().id !== undefined) {
-                    document.querySelector(".username-in").value = "";
-                    document.querySelector(".password-in").value = "";
+        const q = query(
+            collection(db, "accounts"),
+            where("username", "==", `${username}`),
+            where("password", "==", `${password}`)
+        );
 
-                    // Fetch user's current IP address
-                    const response = await fetch("https://api64.ipify.org?format=json");
-                    const data = await response.json();
-                    const currentLocation = data.ip;
+        const querySnapshot = await getDocs(q);
 
-                    // Update user's account with current location and login time
-                    await updateDoc(doc(db, "accounts", doc.id), {
-                        currentLocation: currentLocation,
-                        lastLoginTime: Date.now()
-                    });
-
-                    /**/
-                    localStorage.setItem("notes-online-id", doc.data().id);
-                    /**/
-                    location.href = "../";
-                } else {
-                    Swal.fire("", "Username or Password Are Wrong");
-                }
-            });
-
-        } else {
-            Swal.fire("", "Enter Username and Password");
+        if (querySnapshot.docs.length === 0) {
+            Swal.fire("", "Username Or Password Are Wrong", "error");
         }
-    } catch (error) {
-        console.error("Error signing in:", error);
-        Swal.fire("Error", "An error occurred while signing in. Please try again later.", "error");
+
+        querySnapshot.forEach(async (doc) => {
+            if (doc.data().id !== undefined) {
+                const userRef = doc.ref;
+                const now = new Date();
+                const ipAddress = /* code to get user's IP address */;
+                
+                // Update the current location IP and last login time
+                await updateDoc(userRef, {
+                    currentLocationIP: ipAddress,
+                    lastLoginTime: doc.data().loginTime || null, // Store the previous login time if available
+                    loginTime: now,
+                });
+
+                document.querySelector(".username-in").value = "";
+                document.querySelector(".password-in").value = "";
+
+                // Redirect to the main page
+                location.href = "../";
+            } else {
+                Swal.fire("", "Username Or Password Are Wrong");
+            }
+        });
+    } else {
+        Swal.fire("", "Enter Username And Password");
     }
 });
 
-/* ... (Other code) ... */
+/* End Sign In */
+
 
 
 
