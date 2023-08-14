@@ -37,7 +37,7 @@ async function getCit(db,X) {
 
 /*Start Sing In*/
 
-
+/*Disable
 document.querySelector(".btn-sign-in").addEventListener("click",async()=>{
     let username =  document.querySelector(".username-in").value
     let password =  document.querySelector(".password-in").value
