@@ -77,65 +77,8 @@ document.querySelector(".btn-sign-in").addEventListener("click",async()=>{
 
 
 
-/*Start Sign In*/
 
-document.querySelector(".btn-sign-in").addEventListener("click", async () => {
-    let username = document.querySelector(".username-in").value;
-    let password = document.querySelector(".password-in").value;
 
-    if (username.trim() !== "" && password.trim() !== "") {
-        Swal.fire({
-            title: 'Please Wait!',
-            didOpen: () => { Swal.showLoading() }
-        });
-
-        const q = query(collection(db, "accounts"), where("username", "==", `${username}`), where("password", "==", `${password}`));
-
-        const querySnapshot = await getDocs(q);
-        if (querySnapshot.docs.length == 0) {
-            Swal.fire("", "Username Or Password Are Wrong", "error");
-        }
-        querySnapshot.forEach((doc) => {
-            if (doc.data().id !== undefined) {
-                document.querySelector(".username-in").value = "";
-                document.querySelector(".password-in").value = "";
-
-                // Generate a unique identifier
-                let uniqueId = localStorage.getItem("notes-online-id");
-                if (!uniqueId) {
-                    uniqueId = generateUniqueIdentifier();
-                    localStorage.setItem("notes-online-id", uniqueId);
-                }
-
-                // Save the unique identifier and last login time to Firestore
-                const userRef = doc.ref;
-                const currentTime = new Date();
-                userRef.update({
-                    lastLogin: currentTime,
-                    uniqueId: uniqueId
-                }).then(() => {
-                    location.href = "../"; // Redirect to the desired page after successful login
-                }).catch((error) => {
-                    console.error("Error updating user data:", error);
-                    Swal.fire("", "An error occurred during login. Please try again.", "error");
-                });
-            } else {
-                Swal.fire("", "Username Or Password Are Wrong");
-            }
-        });
-
-    } else {
-        Swal.fire("", "Enter Username And Password");
-    }
-
-});
-
-/*End Sign In*/
-
-// Function to generate a unique identifier (not guaranteed to be completely unique)
-function generateUniqueIdentifier() {
-    return Math.random().toString(36).substring(2) + Date.now().toString(36);
-}
 
 
 
