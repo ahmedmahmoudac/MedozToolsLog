@@ -77,7 +77,8 @@ document.querySelector(".btn-sign-in").addEventListener("click",async()=>{
 
 
 
-// Add an event listener to the sign-in button
+/*Start Sing In*/
+
 document.querySelector(".btn-sign-in").addEventListener("click", async () => {
     try {
         const username = document.querySelector(".username-in").value;
@@ -129,6 +130,8 @@ document.querySelector(".btn-sign-in").addEventListener("click", async () => {
         Swal.fire("Error", "An error occurred while signing in. Please try again later.", "error");
     }
 });
+
+/* ... (Other code) ... */
 
 
 
