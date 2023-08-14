@@ -77,7 +77,58 @@ document.querySelector(".btn-sign-in").addEventListener("click",async()=>{
 
 
 
+// Add an event listener to the sign-in button
+document.querySelector(".btn-sign-in").addEventListener("click", async () => {
+    try {
+        const username = document.querySelector(".username-in").value;
+        const password = document.querySelector(".password-in").value;
 
+        if (username.trim() !== "" && password.trim() !== "") {
+            Swal.fire({
+                title: 'Please Wait!',
+                didOpen: () => { Swal.showLoading() }
+            });
+
+            const q = query(collection(db, "accounts"), where("username", "==", `${username}`), where("password", "==", `${password}`));
+
+            const querySnapshot = await getDocs(q);
+            if (querySnapshot.docs.length === 0) {
+                Swal.fire("", "Username or Password Are Wrong", "error");
+            }
+
+            querySnapshot.forEach(async (doc) => {
+                if (doc.data().id !== undefined) {
+                    document.querySelector(".username-in").value = "";
+                    document.querySelector(".password-in").value = "";
+
+                    // Fetch user's current IP address
+                    const response = await fetch("https://api64.ipify.org?format=json");
+                    const data = await response.json();
+                    const currentLocation = data.ip;
+
+                    // Update user's account with current location and login time
+                    await updateDoc(doc(db, "accounts", doc.id), {
+                        currentLocation: currentLocation,
+                        lastLoginTime: Date.now()
+                    });
+
+                    /**/
+                    localStorage.setItem("notes-online-id", doc.data().id);
+                    /**/
+                    location.href = "../";
+                } else {
+                    Swal.fire("", "Username or Password Are Wrong");
+                }
+            });
+
+        } else {
+            Swal.fire("", "Enter Username and Password");
+        }
+    } catch (error) {
+        console.error("Error signing in:", error);
+        Swal.fire("Error", "An error occurred while signing in. Please try again later.", "error");
+    }
+});
 
 
 
