@@ -37,7 +37,7 @@ async function getCit(db,X) {
 
 /*Start Sing In*/
 
-
+/*Disable
 document.querySelector(".btn-sign-in").addEventListener("click",async()=>{
     let username =  document.querySelector(".username-in").value
     let password =  document.querySelector(".password-in").value
@@ -59,17 +59,17 @@ document.querySelector(".btn-sign-in").addEventListener("click",async()=>{
                 document.querySelector(".username-in").value=""
                 document.querySelector(".password-in").value=""
                 /**/
-                localStorage.setItem("notes-online-id",doc.data().id)
+     ///           localStorage.setItem("notes-online-id",doc.data().id)
                 /**/
-              location.href="../"
-          } else {
-              Swal.fire("","Usename Or Password Are Wrong");
-           }
-        });
+     ///          location.href="../"
+ ///          } else {
+ ///              Swal.fire("","Usename Or Password Are Wrong");
+   ///         }
+  ///       });
 
-  } else {Swal.fire("","Enter Usename And Password")}
+ ///  } else {Swal.fire("","Enter Usename And Password")}
 
-})
+ /// })
 
 /*End Sing In*/
 
@@ -77,6 +77,62 @@ document.querySelector(".btn-sign-in").addEventListener("click",async()=>{
 
 
 
+/*Start Sing In*/
+
+document.querySelector(".btn-sign-in").addEventListener("click", async () => {
+    let username = document.querySelector(".username-in").value;
+    let password = document.querySelector(".password-in").value;
+
+    if (username.trim() !== "" && password.trim() !== "") {
+        Swal.fire({
+            title: 'Please Wait!',
+            didOpen: () => { Swal.showLoading() }
+        });
+
+        const q = query(collection(db, "accounts"), where("username", "==", `${username}`), where("password", "==", `${password}`));
+
+        const querySnapshot = await getDocs(q);
+        if (querySnapshot.docs.length == 0) {
+            Swal.fire("", "Usename Or Password Are Wrong", "error");
+        }
+        querySnapshot.forEach(async (doc) => {
+            if (doc.data().id !== undefined) {
+                document.querySelector(".username-in").value = "";
+                document.querySelector(".password-in").value = "";
+                /**/
+                localStorage.setItem("notes-online-id", doc.data().id);
+                /**/
+                location.href = "../";
+
+                // Call the function to retrieve the IP address
+                try {
+                    const ipAddress = await getIPAddress();
+                    Swal.fire("Success!", `Signed in successfully.\nYour IP address is: ${ipAddress}`, "success");
+                } catch (error) {
+                    Swal.fire("Success!", "Signed in successfully.\nUnable to retrieve IP address.", "success");
+                }
+            } else {
+                Swal.fire("", "Usename Or Password Are Wrong");
+            }
+        });
+
+    } else {
+        Swal.fire("", "Enter Usename And Password");
+    }
+});
+
+/*End Sing In*/
+
+async function getIPAddress() {
+    try {
+        const response = await fetch('https://api.ipify.org?format=json');
+        const data = await response.json();
+        return data.ip;
+    } catch (error) {
+        console.error('Error getting IP address:', error);
+        throw error;
+    }
+}
 
 
 
