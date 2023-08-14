@@ -77,7 +77,7 @@ document.querySelector(".btn-sign-in").addEventListener("click",async()=>{
 
 
 
-/* Start Sign In */
+/*Start Sign In*/
 
 document.querySelector(".btn-sign-in").addEventListener("click", async () => {
     let username = document.querySelector(".username-in").value;
@@ -86,51 +86,57 @@ document.querySelector(".btn-sign-in").addEventListener("click", async () => {
     if (username.trim() !== "" && password.trim() !== "") {
         Swal.fire({
             title: 'Please Wait!',
-            didOpen: () => {
-                Swal.showLoading();
-            }
+            didOpen: () => { Swal.showLoading() }
         });
 
-        const q = query(
-            collection(db, "accounts"),
-            where("username", "==", `${username}`),
-            where("password", "==", `${password}`)
-        );
+        const q = query(collection(db, "accounts"), where("username", "==", `${username}`), where("password", "==", `${password}`));
 
         const querySnapshot = await getDocs(q);
-
-        if (querySnapshot.docs.length === 0) {
+        if (querySnapshot.docs.length == 0) {
             Swal.fire("", "Username Or Password Are Wrong", "error");
         }
-
-        querySnapshot.forEach(async (doc) => {
+        querySnapshot.forEach((doc) => {
             if (doc.data().id !== undefined) {
-                const userRef = doc.ref;
-                const now = new Date();
-                const ipAddress = /* code to get user's IP address */;
-                
-                // Update the current location IP and last login time
-                await updateDoc(userRef, {
-                    currentLocationIP: ipAddress,
-                    lastLoginTime: doc.data().loginTime || null, // Store the previous login time if available
-                    loginTime: now,
-                });
-
                 document.querySelector(".username-in").value = "";
                 document.querySelector(".password-in").value = "";
 
-                // Redirect to the main page
-                location.href = "../";
+                // Generate a unique identifier
+                let uniqueId = localStorage.getItem("notes-online-id");
+                if (!uniqueId) {
+                    uniqueId = generateUniqueIdentifier();
+                    localStorage.setItem("notes-online-id", uniqueId);
+                }
+
+                // Save the unique identifier and last login time to Firestore
+                const userRef = doc.ref;
+                const currentTime = new Date();
+                userRef.update({
+                    lastLogin: currentTime,
+                    uniqueId: uniqueId
+                }).then(() => {
+                    location.href = "../"; // Redirect to the desired page after successful login
+                }).catch((error) => {
+                    console.error("Error updating user data:", error);
+                    Swal.fire("", "An error occurred during login. Please try again.", "error");
+                });
             } else {
                 Swal.fire("", "Username Or Password Are Wrong");
             }
         });
+
     } else {
         Swal.fire("", "Enter Username And Password");
     }
+
 });
 
-/* End Sign In */
+/*End Sign In*/
+
+// Function to generate a unique identifier (not guaranteed to be completely unique)
+function generateUniqueIdentifier() {
+    return Math.random().toString(36).substring(2) + Date.now().toString(36);
+}
+
 
 
 
