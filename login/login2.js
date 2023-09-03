@@ -40,7 +40,7 @@ async function getCit(db,X) {
 
 document.querySelector(".button-1").addEventListener("click",async()=>{
     let username =  document.querySelector(".single-input").value
-    let password =  document.querySelector(".single-input mb-0").value
+    let password =  document.querySelector(".single-input.mb-0").value
 
     if (username.trim()!==""&&password.trim()!=="") {
         Swal.fire({
