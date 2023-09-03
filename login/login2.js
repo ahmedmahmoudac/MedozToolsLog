@@ -98,20 +98,7 @@ document.querySelector(".button-1").addEventListener("click",async()=>{
 
 
 
-document.querySelector(".btn-sign-up").addEventListener("click", () => {
-    Swal.fire({
-        title: 'Account Creation Disabled 😥',
-        text: 'Sorry, account creation is currently disabled, if you need account subscribe medoz pro group you will get account and medoz pro vip group forever for only 100$ fees pay one time only. 😥',
-        icon: 'warning',
-        confirmButtonText: 'Subscribe Now 100$',
-        showCancelButton: true,
-        cancelButtonText: 'Cancel'
-    }).then((result) => {
-        if (result.isConfirmed) {
-            window.open('https://t.me/ahmedmahmoudac', '_blank');
-        }
-    });
-});
+
 
 
 
