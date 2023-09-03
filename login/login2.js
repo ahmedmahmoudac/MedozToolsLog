@@ -38,9 +38,9 @@ async function getCit(db,X) {
 /*Start Sing In*/
 
 
-document.querySelector(".btn-sign-in").addEventListener("click",async()=>{
-    let username =  document.querySelector(".username-in").value
-    let password =  document.querySelector(".password-in").value
+document.querySelector(".button-1").addEventListener("click",async()=>{
+    let username =  document.querySelector(".single-input").value
+    let password =  document.querySelector(".single-input mb-0").value
 
     if (username.trim()!==""&&password.trim()!=="") {
         Swal.fire({
@@ -56,8 +56,8 @@ document.querySelector(".btn-sign-in").addEventListener("click",async()=>{
         }
         querySnapshot.forEach((doc) => {
             if(doc.data().id!==undefined){
-                document.querySelector(".username-in").value=""
-                document.querySelector(".password-in").value=""
+                document.querySelector(".single-input").value=""
+                document.querySelector(".single-input mb-0").value=""
                 /**/
                localStorage.setItem("notes-online-id",doc.data().id)
                 /**/
