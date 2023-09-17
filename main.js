@@ -77,7 +77,7 @@ let noon = document.querySelector('#noon')
 
 /*1*/
 import { initializeApp } from 'https://www.gstatic.com/firebasejs/10.0.0/firebase-app.js';
-import { getFirestore, collection, getDocs,getDoc, setDoc, addDoc, doc,where } from 'https://www.gstatic.com/firebasejs/10.0.0/firebase-firestore.js';
+import { getFirestore, collection, getDocs,getDoc, setDoc, addDoc, doc,where , updateDoc} from 'https://www.gstatic.com/firebasejs/10.0.0/firebase-firestore.js';
 
 // TODO: Replace the following with your app's Firebase project configuration
 const firebaseConfig = {
