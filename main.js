@@ -1,7 +1,6 @@
 /*****************************************************************************/
-document.querySelector(".loaderDad").style.display="block"
-
-
+//document.querySelector(".loaderDad").style.display="block"
+document.querySelector(".loaderDad").style.cssText = "display: block; background-color: #3730a3;";
 
 
 /* start custom function */
@@ -74,11 +73,11 @@ window.onclick=(e)=>{
 
 
 
-let noon2 = document.querySelector('#noon2')
+let noon = document.querySelector('#noon')
 
 /*1*/
 import { initializeApp } from 'https://www.gstatic.com/firebasejs/10.0.0/firebase-app.js';
-import { getFirestore, collection, getDocs,getDoc, setDoc, addDoc, doc,where , updateDoc} from 'https://www.gstatic.com/firebasejs/10.0.0/firebase-firestore.js';
+import { getFirestore, collection, getDocs,getDoc, setDoc, addDoc, doc,where } from 'https://www.gstatic.com/firebasejs/10.0.0/firebase-firestore.js';
 
 // TODO: Replace the following with your app's Firebase project configuration
 const firebaseConfig = {
@@ -104,6 +103,7 @@ const cityList = citySnapshot.docs.map(doc => doc.data());
 return cityList;
 }
 /*1*/
+
 
 /* start get user doc */
 let docId = localStorage.getItem("notes-online-id");
@@ -257,32 +257,11 @@ await getDoc(doc(db, "accounts", docId)).then(async (e) => {
 /* end get user doc */
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-async function getMainData() {
-  await getDoc(doc(db, "accounts", docId)).then(e => {
-    mainData = e.data();
-  });
+async function getMainData(){
+  await getDoc(doc(db, "accounts", docId)).then(e=>{
+    mainData = e.data()
+  })
 }
-
-
-
-
 
 
 let src="";
@@ -326,7 +305,7 @@ let btn2 = document.querySelector('#btn2')
 
 //save in local storage
 function save() {
-  let G = noon2.innerHTML;
+  let G = noon.innerHTML;
 
   /*start post*/
   setDoc(doc(db, "accounts", localStorage.getItem("notes-online-id")), {
@@ -459,10 +438,10 @@ btn1.onclick=async()=>{
   }
   
 
-    if (noon2.innerHTML==''){
-      noon2.appendChild(div);
+    if (noon.innerHTML==''){
+      noon.appendChild(div);
     } else{
-      noon2.firstChild.before(div);
+      noon.firstChild.before(div);
     }
     
   }
