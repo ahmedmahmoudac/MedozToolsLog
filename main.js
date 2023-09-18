@@ -160,7 +160,7 @@ await getDoc(doc(db, "accounts", docId)).then(async (e) => {
       console.log("Subcollection 'InstaTools' created successfully!");
       console.log("Document with 'INS1' field added to 'InstaTools' subcollection:", docRefInInstaTools.id);
 
-      INS1Value = "YourValueForINS1"; // Update INS1Value
+      INS1Value = "Contatct Ahmed Mahmoud To Activate Your Insta Tools"; // Update INS1Value
     } else {
       // A document already exists in the "InstaTools" subcollection, update INS1Value
       console.log("A document already exists in 'InstaTools' subcollection.");
@@ -183,7 +183,7 @@ await getDoc(doc(db, "accounts", docId)).then(async (e) => {
       console.log("Subcollection 'FbTools' created successfully!");
       console.log("Document with 'FB1' field added to 'FbTools' subcollection:", docRefInFbTools.id);
 
-      FB1Value = "YourValueForFB1"; // Update FB1Value
+      FB1Value = "Contatct Ahmed Mahmoud To Activate Your Facebook Tools"; // Update FB1Value
     } else {
       // A document already exists in the "FbTools" subcollection, update FB1Value
       console.log("A document already exists in 'FbTools' subcollection.");
