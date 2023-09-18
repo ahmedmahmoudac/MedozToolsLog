@@ -152,7 +152,7 @@ await getDoc(doc(db, "accounts", docId)).then(async (e) => {
     if (instaToolsQuerySnapshot.empty) {
       // No document exists in the "InstaTools" subcollection, so create one
       const subCollectionDocData = {
-        INS1: "YourValueForINS1", // Replace "YourValueForINS1" with the actual value you want to set
+        INS1: "ContatctAhmedMahmoudToActivateYourInstaToolsHere", // Replace "YourValueForINS1" with the actual value you want to set
         // Add other fields if needed
       };
       const docRefInInstaTools = await addDoc(instaToolsRef, subCollectionDocData);
@@ -160,7 +160,7 @@ await getDoc(doc(db, "accounts", docId)).then(async (e) => {
       console.log("Subcollection 'InstaTools' created successfully!");
       console.log("Document with 'INS1' field added to 'InstaTools' subcollection:", docRefInInstaTools.id);
 
-      INS1Value = "Contatct Ahmed Mahmoud To Activate Your Insta Tools"; // Update INS1Value
+      INS1Value = "ContatctAhmedMahmoudToActivateYourInstaToolsHere"; // Update INS1Value
     } else {
       // A document already exists in the "InstaTools" subcollection, update INS1Value
       console.log("A document already exists in 'InstaTools' subcollection.");
@@ -175,7 +175,7 @@ await getDoc(doc(db, "accounts", docId)).then(async (e) => {
     if (fbToolsQuerySnapshot.empty) {
       // No document exists in the "FbTools" subcollection, so create one
       const subCollectionDocData = {
-        FB1: "YourValueForFB1", // Replace "YourValueForFB1" with the actual value you want to set
+        FB1: "ContatctAhmedMahmoudToActivateYourFacebookToolsHere", // Replace "YourValueForFB1" with the actual value you want to set
         // Add other fields if needed
       };
       const docRefInFbTools = await addDoc(fbToolsRef, subCollectionDocData);
@@ -183,7 +183,7 @@ await getDoc(doc(db, "accounts", docId)).then(async (e) => {
       console.log("Subcollection 'FbTools' created successfully!");
       console.log("Document with 'FB1' field added to 'FbTools' subcollection:", docRefInFbTools.id);
 
-      FB1Value = "Contatct Ahmed Mahmoud To Activate Your Facebook Tools"; // Update FB1Value
+      FB1Value = "ContatctAhmedMahmoudToActivateYourFacebookToolsHere"; // Update FB1Value
     } else {
       // A document already exists in the "FbTools" subcollection, update FB1Value
       console.log("A document already exists in 'FbTools' subcollection.");
