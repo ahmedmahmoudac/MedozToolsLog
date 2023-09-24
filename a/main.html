@@ -90,10 +90,10 @@
 <br>
 <hr>
 
-<label for="customValueINS2">instatools2 (INS2)All:</label>
-<textarea id="customValueINS2" placeholder="Enter instatools2 (INS2) for All Users:" style="height: 154px; width: 686px;"></textarea>
+    <label for="customValueINS2">instatools2 (INS2):</label>
+     <textarea id="customValueINS2" placeholder="Enter instatools2 (INS2):" style="height: 147px; width: 222px;"></textarea>
 
-    <button onclick="updateInstaTools2INS2ForAllUsers()">Update instatools2 (INS2) for All Users</button> <!-- New buttonINS2 -->
+    <button onclick="updateValueINS2ForAllUsers()">Update instatools2 (INS2) for All Users</button> <!-- New button -->
 </div>
 
 <br>
@@ -408,6 +408,56 @@ function updatefbtools2FB2ForAllUsers() {
         });
 }
 
+
+// Function to update a value for all users in "instatools2" subcollection
+function updateValueINS2ForAllUsers() {
+    // Get a reference to the "accounts" collection
+    const accountsRef = db.collection("accounts");
+
+    // Get the custom value from the input textbox
+    const customValueINS2 = document.getElementById("customValueINS2").value;
+
+    // Fetch all user documents
+    accountsRef.get()
+        .then((querySnapshot) => {
+            querySnapshot.forEach((userDoc) => {
+                // Check if the document exists in the "instatools2" subcollection
+                const userId = userDoc.id;
+                const instatools2CollectionRef = accountsRef.doc(userId).collection("instatools2");
+
+                instatools2CollectionRef.get()
+                    .then((querySnapshot) => {
+                        // Check if there's at least one document in the subcollection
+                        if (!querySnapshot.empty) {
+                            // Update the value for all documents in the subcollection with the custom value
+                            querySnapshot.forEach((doc) => {
+                                const updatedData = {
+                                    INS2: customValueINS2,
+                                };
+
+                                const docRef = instatools2CollectionRef.doc(doc.id);
+
+                                docRef.set(updatedData, { merge: true })
+                                    .then(() => {
+                                        console.log(`Value updated for user ${userId}, document ID ${doc.id}`);
+                                    })
+                                    .catch((error) => {
+                                        console.error(`Error updating value for user ${userId}, document ID ${doc.id}:`, error);
+                                    });
+                            });
+                        } else {
+                            console.log(`No documents found in "instatools2" subcollection for user ${userId}. Skipping.`);
+                        }
+                    })
+                    .catch((error) => {
+                        console.error(`Error fetching documents in "instatools2" subcollection for user ${userId}:`, error);
+                    });
+            });
+        })
+        .catch((error) => {
+            console.error("Error fetching user documents:", error);
+        });
+}
 
 
 
