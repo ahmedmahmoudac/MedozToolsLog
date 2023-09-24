@@ -59,7 +59,7 @@ window.onclick=(e)=>{
 
   if(e.target.classList.value=="logOut"){
     localStorage.setItem("notes-online-id","")
-    location.href="./login/login.html"
+    location.href="./login/"
   }
 
 }
