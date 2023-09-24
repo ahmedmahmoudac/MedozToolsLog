@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Firebase User Data</title>
+</head>
+<body>
+    <h1>Firebase User Data</h1>
+
+    <!-- Display User IDs -->
+    <h2>User IDs</h2>
+    <div id="userIds">
+        <!-- User IDs will be displayed here -->
+    </div>
+
+    <!-- Select User and Display Data -->
+    <h2>Select User and Display Data</h2>
+    <div>
+        <label for="selectUser">Select User:</label>
+        <select id="selectUser">
+            <!-- User options will be populated here -->
+        </select>
+
+<div>
+    <label for="customUserId">Custom User ID or Username:</label>
+    <input type="text" id="customUserId" placeholder="Enter Custom User ID or Username">
+    <button onclick="addCustomUserId()">Search User</button>
+</div>
+
+    <button onclick="getUserData()">Get User Data</button>
+    <button onclick="editUserData()">Edit User Data</button>
+    <button onclick="saveUserData()">Save User Data</button>
+
+
+    <button onclick="getUserData()">Get User Data</button>
+<br>
+<hr>
+<div id="userData">
+        <!-- User data will be displayed here -->
+    </div>
+<br>
+<hr>
+    <button onclick="editUserData()">Edit User Data</button>
+<br>
+<hr>
+    <button onclick="saveUserData()">Save User Data</button>
+<br>
+<hr>
+<h2>Edit Panel Custom User Only</h2>
+    <button onclick="editinstatools2Data()">Edit INS2 in instatools2 Custom User only [1]</button>
+
+    <label for="customValueINS2CustomUser">instatools2 (INS2) Custom User only:</label>
+     <textarea id="customValueINS2CustomUser" placeholder="Edit INS2 in instatools2 Custom User only [Enable]:" style="height: 154px; width: 686px;"></textarea>
+
+    <button onclick="saveinstatools2Data()">Save INS2 in instatools2 Custom User only</button>
+
+</div>
+    <div id="userData">
+        <!-- User data will be displayed here -->
+    </div>
+
+    <!-- Display Subcollection Data for instatools2New -->
+    <h2>instatools2 Subcollection Data</h2>
+    <div id="instatools2SubcollectionDetails">
+        <!-- Subcollection details will be displayed here -->
+    </div>
+    <div id="instatools2SubcollectionData">
+        <!-- Subcollection data will be displayed here -->
+    </div>
+
+
+
+
+
+
+
+    <!-- Firebase Configuration -->
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script>
+
+    <script>
+        // Firebase configuration (replace with your own Firebase project credentials)
+        const firebaseConfig = {
+    apiKey: "AIzaSyA5Oygn4KCqdTHuryzqD4DHUdXCjj8wFfM",
+    authDomain: "file-upload-by-medoz-pro.firebaseapp.com",
+    projectId: "file-upload-by-medoz-pro",
+    storageBucket: "file-upload-by-medoz-pro.appspot.com",
+    messagingSenderId: "575667669315",
+    appId: "1:575667669315:web:b5ce5f7e7b607280dd87f6",
+        };
+
+        // Initialize Firebase
+        firebase.initializeApp(firebaseConfig);
+
+        const db = firebase.firestore();
+        // Function to get all user IDs
+        function getAllUserIds() {
+db.collection("accounts")
+        .get()
+        .then((querySnapshot) => {
+            const userIds = [];
+            querySnapshot.forEach((doc) => {
+                const userId = doc.id;
+                const username = doc.data().username; // Assuming username is a field in your document
+                userIds.push({ id: userId, username: username });
+            });
+
+            // Populate the select element with user options
+            const selectUser = document.getElementById("selectUser");
+            userIds.forEach((user) => {
+                const option = document.createElement("option");
+                option.value = user.id;
+                option.text = user.id + " (" + user.username + ")";
+                selectUser.appendChild(option);
+            });
+        })
+        .catch((error) => {
+            console.error("Error getting user IDs with usernames:", error);
+        });
+}
+
+        // Function to get user data based on the selected user
+        function getUserData() {
+            const selectedUserId = document.getElementById("selectUser").value;
+
+            // Get the user document
+            db.collection("accounts")
+                .doc(selectedUserId)
+                .get()
+                .then((doc) => {
+                    const userDataDiv = document.getElementById("userData");
+                    userDataDiv.innerHTML = ""; // Clear previous data
+
+                    if (doc.exists) {
+                        const userData = doc.data();
+
+                        // Create a div for user data
+                        const userDataContent = document.createElement("div");
+                        userDataContent.innerHTML = JSON.stringify(userData, null, 2);
+                        userDataDiv.appendChild(userDataContent);
+
+                        // Fetch and display subcollection data for instatools2 and instatools2
+                        fetchSubcollectionData(selectedUserId, "instatools2", "instatools2SubcollectionDetails", "instatools2SubcollectionData");
+                        fetchSubcollectionData(selectedUserId, "instatools2", "instatools2SubcollectionDetails", "instatools2SubcollectionData");
+                        fetchSubcollectionData(selectedUserId, "instatools22", "instatools22SubcollectionDetails", "instatools22SubcollectionData");
+                        fetchSubcollectionData(selectedUserId, "instatools22", "instatools22SubcollectionDetails", "instatools22SubcollectionData");
+                    } else {
+                        userDataDiv.innerHTML = "User not found.";
+                        clearSubcollectionData("instatools2SubcollectionDetails", "instatools2SubcollectionData");
+                        clearSubcollectionData("instatools2SubcollectionDetails", "instatools2SubcollectionData");
+                    }
+                })
+                .catch((error) => {
+                    console.error("Error getting user data:", error);
+                });
+        }
+
+        // Function to fetch and display subcollection data for a given subcollection
+        function fetchSubcollectionData(userId, subcollectionName, detailsId, dataId) {
+            // Display the subcollection details
+
+
+
+            const subcollectionDetailsDiv = document.getElementById(detailsId);
+            subcollectionDetailsDiv.innerHTML = `Subcollection Name: ${subcollectionName}<br>Document Location: /accounts/${userId}/${subcollectionName}/`;
+
+            db.collection("accounts")
+                .doc(userId)
+                .collection(subcollectionName)
+                .get()
+                .then((querySnapshot) => {
+                    const subcollectionDataDiv = document.getElementById(dataId);
+                    subcollectionDataDiv.innerHTML = ""; // Clear previous data
+
+                    const subcollectionData = [];
+                    querySnapshot.forEach((doc) => {
+                        subcollectionData.push(doc.data());
+                    });
+
+                    if (subcollectionData.length > 0) {
+                        // Create a div for subcollection data
+                        const subcollectionDataContent = document.createElement("div");
+                        subcollectionDataContent.innerHTML = JSON.stringify(subcollectionData, null, 2);
+                        subcollectionDataDiv.appendChild(subcollectionDataContent);
+                    } else {
+                        subcollectionDataDiv.innerHTML = "Subcollection is empty.";
+                    }
+                })
+                .catch((error) => {
+                    console.error("Error getting subcollection data:", error);
+                });
+        }
+
+        // Function to clear subcollection details and data
+        function clearSubcollectionData(detailsId, dataId) {
+            document.getElementById(detailsId).innerHTML = ""; // Clear subcollection details
+            document.getElementById(dataId).innerHTML = ""; // Clear subcollection data
+        }
+
+
+// Function to select an existing option based on user input
+function addCustomUserId() {
+    const customUserId = document.getElementById("customUserId").value.trim();
+    
+    if (customUserId) {
+        const selectUser = document.getElementById("selectUser");
+        
+        // Check if the custom user ID or username already exists in the select options
+        const existingOptions = Array.from(selectUser.options);
+        const existingOption = existingOptions.find(option => {
+            const optionValue = option.value;
+            const optionText = option.text;
+            
+            // Check if the custom input matches either the value or the text of the option
+            return optionValue === customUserId || optionText.includes(`(${customUserId})`);
+        });
+        
+        if (existingOption) {
+            // Select the existing option
+            selectUser.value = existingOption.value;
+        } else {
+            alert("The custom user ID or username does not exist in the select options.");
+        }
+    } else {
+        alert("Please enter a valid custom user ID or username.");
+    }
+}
+
+
+        // Function to edit user data
+        function editUserData() {
+            const userDataDiv = document.getElementById("userData");
+            const userDataContent = userDataDiv.querySelector("div");
+            const userData = JSON.parse(userDataContent.textContent);
+
+            // Create input fields for each data field
+            userDataDiv.innerHTML = ""; // Clear previous data
+            for (const key in userData) {
+                if (userData.hasOwnProperty(key)) {
+                    const input = document.createElement("input");
+                    input.type = "text";
+                    input.value = userData[key];
+                    input.setAttribute("data-field", key);
+                    userDataDiv.appendChild(input);
+                }
+            }
+        }
+
+
+// Function to edit instatools2 Subcollection Data
+function editinstatools2Data() {
+    const selectedUserId = document.getElementById("selectUser").value;
+
+    db.collection("accounts")
+        .doc(selectedUserId)
+        .collection("instatools2")
+        .get()
+        .then((querySnapshot) => {
+            const instatools2DataDiv = document.getElementById("instatools2SubcollectionData");
+            instatools2DataDiv.innerHTML = ""; // Clear previous data
+
+            const instatools2Data = [];
+            querySnapshot.forEach((doc) => {
+                instatools2Data.push({ id: doc.id, ...doc.data() });
+            });
+
+            if (instatools2Data.length > 0) {
+                // Create an input field for editing INS2
+                const input = document.createElement("input");
+                input.type = "text";
+                input.value = instatools2Data[0].INS2;
+                input.setAttribute("data-field", "INS2");
+                instatools2DataDiv.appendChild(input);
+
+                // Store the document ID in a hidden input field
+const visibleInput = document.createElement("input");
+visibleInput.type = "text"; // Change the type to "text" to make it visible
+visibleInput.value = instatools2Data[0].id;
+visibleInput.setAttribute("data-field", "docId");
+instatools2DataDiv.appendChild(visibleInput);
+            } else {
+                instatools2DataDiv.innerHTML = "instatools2 data not found.";
+            }
+        })
+        .catch((error) => {
+            console.error("Error getting instatools2 data:", error);
+        });
+}
+
+// Function to save edited instatools2 Subcollection Data
+function saveinstatools2Data() {
+
+   // Get the custom value from the input textbox
+    const customValueINS2CustomUser = document.getElementById("customValueINS2CustomUser").value;
+
+    const selectedUserId = document.getElementById("selectUser").value;
+    const instatools2DataDiv = document.getElementById("instatools2SubcollectionData");
+    const inputField = instatools2DataDiv.querySelector("input[data-field='INS2']");
+    const docIdField = instatools2DataDiv.querySelector("input[data-field='docId']");
+
+    const updatedData = {
+        INS2: customValueINS2CustomUser,
+    };
+
+    const docId = docIdField.value; // Get the document ID
+
+    // Update the instatools2 document with the edited data
+    db.collection("accounts")
+        .doc(selectedUserId)
+        .collection("instatools2")
+        .doc(docId)
+        .set(updatedData, { merge: true }) // Use merge: true to update the existing document
+        .then(() => {
+            // Show a success message or perform any other desired action
+            console.log("instatools2 data updated successfully.");
+        })
+        .catch((error) => {
+            console.error("Error updating instatools2 data:", error);
+        });
+
+    // Restore the instatools2 data display
+    fetchSubcollectionData(selectedUserId, "instatools2", "instatools2SubcollectionDetails", "instatools2SubcollectionData");
+}
+
+
+
+
+
+        // Function to save edited user data
+        function saveUserData() {
+            const selectedUserId = document.getElementById("selectUser").value;
+            const userDataDiv = document.getElementById("userData");
+            const inputFields = userDataDiv.querySelectorAll("input");
+
+            const updatedData = {};
+            inputFields.forEach((input) => {
+                const field = input.getAttribute("data-field");
+                const value = input.value;
+                updatedData[field] = value;
+            });
+
+            // Update the user document with the edited data
+            db.collection("accounts")
+                .doc(selectedUserId)
+                .update(updatedData)
+                .then(() => {
+                    // Show a success message or perform any other desired action
+                    console.log("User data updated successfully.");
+                })
+                .catch((error) => {
+                    console.error("Error updating user data:", error);
+                });
+
+            // Restore the user data display
+            getUserData();
+        }
+
+        // Call the function to get all user IDs when the page loads
+        getAllUserIds();
+    </script>
+</body>
+</html>
