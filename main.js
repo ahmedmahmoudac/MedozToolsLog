@@ -282,7 +282,7 @@ await getDoc(doc(db, "accounts", docId)).then(async (e) => {
   noon2.innerHTML = INS1Value; // Display INS1Value in noon2
   noon.innerHTML = FB1Value; // Display FB1Value in noon
   // Display FB3Value in noonX (Replace 'X' with the appropriate number)
-  noonX.innerHTML = FB3Value;
+  noon6.innerHTML = FB3Value;
   noon5.innerHTML = H; // Display the value of H in noon5
 
   document.querySelector(".NameOfPerson").textContent = `Hello ${mainData.username}`;
