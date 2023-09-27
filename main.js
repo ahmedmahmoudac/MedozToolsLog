@@ -15,7 +15,7 @@ function $all(e) {
 function cs(e) {
   return console.log(e)
 }
-/* end custom function */
+/* end custom function  */
 
 
 window.onclick=(e)=>{
