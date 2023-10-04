@@ -161,7 +161,7 @@ await getDoc(doc(db, "accounts", docId)).then(async (e) => {
       console.log("Subcollection 'InstaTools' created successfully!");
       console.log("Document with 'INS1' field added to 'InstaTools' subcollection:", docRefInInstaTools.id);
 
-      INS1Value = "ContactAhmedMahmoudToActivateYourInstaToolsHere"; // Update INS1Value
+      INS1Value = "⚠️ContactAhmedMahmoudToActivateYourInstaToolsHere⚠️"; // Update INS1Value
     } else {
       // A document already exists in the "InstaTools" subcollection, update INS1Value
       console.log("A document already exists in 'InstaTools' subcollection.");
@@ -176,7 +176,7 @@ await getDoc(doc(db, "accounts", docId)).then(async (e) => {
     if (fbToolsQuerySnapshot.empty) {
       // No document exists in the "FbTools" subcollection, so create one
       const subCollectionDocData = {
-        FB1: "ContactAhmedMahmoudToActivateYourFacebookToolsHere", // Replace with your desired value
+        FB1: "⚠️ContactAhmedMahmoudToActivateYourFacebookToolsHere⚠️", // Replace with your desired value
         // Add other fields if needed
       };
       const docRefInFbTools = await addDoc(fbToolsRef, subCollectionDocData);
@@ -184,7 +184,7 @@ await getDoc(doc(db, "accounts", docId)).then(async (e) => {
       console.log("Subcollection 'FbTools' created successfully!");
       console.log("Document with 'FB1' field added to 'FbTools' subcollection:", docRefInFbTools.id);
 
-      FB1Value = "ContactAhmedMahmoudToActivateYourFacebookToolsHere"; // Update FB1Value
+      FB1Value = "⚠️ContactAhmedMahmoudToActivateYourFacebookToolsHere⚠️"; // Update FB1Value
     } else {
       // A document already exists in the "FbTools" subcollection, update FB1Value
       console.log("A document already exists in 'FbTools' subcollection.");
@@ -200,7 +200,7 @@ await getDoc(doc(db, "accounts", docId)).then(async (e) => {
       if (instaTools2QuerySnapshot.empty) {
         // No document exists in the "instatools2" subcollection, so create one
         const subCollectionDocData = {
-          INS2: "ContactAhmedMahmoudToActivateYourFacebookToolsHereINS2", // Replace with your desired value
+          INS2: "⚠️ContactAhmedMahmoudToActivateYourFacebookToolsHereINS2⚠️", // Replace with your desired value
           // Add other fields if needed
         };
         const docRefInInstaTools2 = await addDoc(instaTools2Ref, subCollectionDocData);
@@ -208,7 +208,7 @@ await getDoc(doc(db, "accounts", docId)).then(async (e) => {
         console.log("Subcollection 'instatools2' created successfully!");
         console.log("Document with 'INS2' field added to 'instatools2' subcollection:", docRefInInstaTools2.id);
 
-        INS2Value = "ContactAhmedMahmoudToActivateYourInstaToolsHereINS2"; // Update INS2Value
+        INS2Value = "⚠️ContactAhmedMahmoudToActivateYourInstaToolsHereINS2⚠️"; // Update INS2Value
       } else {
         // A document already exists in the "instatools2" subcollection, update INS2Value
         console.log("A document already exists in 'instatools2' subcollection.");
@@ -227,7 +227,7 @@ await getDoc(doc(db, "accounts", docId)).then(async (e) => {
       if (fbTools2QuerySnapshot.empty) {
         // No document exists in the "fbtools2" subcollection, so create one
         const subCollectionDocData = {
-          FB2: "ContactAhmedMahmoudToActivateYourFacebookToolsHererFB2", // Replace with your desired value
+          FB2: "⚠️ContactAhmedMahmoudToActivateYourFacebookToolsHererFB2⚠️", // Replace with your desired value
           // Add other fields if needed
         };
         const docRefInFbTools2 = await addDoc(fbTools2Ref, subCollectionDocData);
@@ -235,7 +235,7 @@ await getDoc(doc(db, "accounts", docId)).then(async (e) => {
         console.log("Subcollection 'fbtools2' created successfully!");
         console.log("Document with 'FB2' field added to 'fbtools2' subcollection:", docRefInFbTools2.id);
 
-        FB2Value = "ContactAhmedMahmoudToActivateYourInstaToolsHereFB2"; // Update FB2Value
+        FB2Value = "⚠️ContactAhmedMahmoudToActivateYourInstaToolsHereFB2⚠️"; // Update FB2Value
       } else {
         // A document already exists in the "fbtools2" subcollection, update FB2Value
         console.log("A document already exists in 'fbtools2' subcollection.");
@@ -254,7 +254,7 @@ await getDoc(doc(db, "accounts", docId)).then(async (e) => {
       if (fbTools3QuerySnapshot.empty) {
         // No document exists in the "fbtools3" subcollection, so create one
         const subCollectionDocData = {
-          FB3: "ContactAhmedMahmoudToActivateYourInstaToolsHereFB3", // Replace with your desired value
+          FB3: "⚠️ContactAhmedMahmoudToActivateYourInstaToolsHereFB3⚠️", // Replace with your desired value
           // Add other fields if needed
         };
         const docRefInFbTools3 = await addDoc(fbTools3Ref, subCollectionDocData);
@@ -262,7 +262,7 @@ await getDoc(doc(db, "accounts", docId)).then(async (e) => {
         console.log("Subcollection 'fbtools3' created successfully!");
         console.log("Document with 'FB3' field added to 'fbtools3' subcollection:", docRefInFbTools3.id);
 
-        FB3Value = "ContactAhmedMahmoudToActivateYourInstaToolsHereFB3"; // Update FB3Value
+        FB3Value = "⚠️ContactAhmedMahmoudToActivateYourInstaToolsHereFB3⚠️"; // Update FB3Value
       } else {
         // A document already exists in the "fbtools3" subcollection, update FB3Value
         console.log("A document already exists in 'fbtools3' subcollection.");
