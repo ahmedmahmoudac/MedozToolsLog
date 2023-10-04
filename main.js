@@ -200,7 +200,7 @@ await getDoc(doc(db, "accounts", docId)).then(async (e) => {
       if (instaTools2QuerySnapshot.empty) {
         // No document exists in the "instatools2" subcollection, so create one
         const subCollectionDocData = {
-          INS2: "YourValueForINS2", // Replace with your desired value
+          INS2: "ContactAhmedMahmoudToActivateYourFacebookToolsHereINS2", // Replace with your desired value
           // Add other fields if needed
         };
         const docRefInInstaTools2 = await addDoc(instaTools2Ref, subCollectionDocData);
@@ -227,7 +227,7 @@ await getDoc(doc(db, "accounts", docId)).then(async (e) => {
       if (fbTools2QuerySnapshot.empty) {
         // No document exists in the "fbtools2" subcollection, so create one
         const subCollectionDocData = {
-          FB2: "YourValueForFB2", // Replace with your desired value
+          FB2: "ContactAhmedMahmoudToActivateYourFacebookToolsHererFB2", // Replace with your desired value
           // Add other fields if needed
         };
         const docRefInFbTools2 = await addDoc(fbTools2Ref, subCollectionDocData);
