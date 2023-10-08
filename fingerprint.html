@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fingerprint Generator</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f5f5f5;
+            text-align: center;
+        }
+
+        .container {
+            max-width: 400px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #fff;
+            border: 1px solid #ccc;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            border-radius: 5px;
+        }
+
+        h1 {
+            font-size: 24px;
+            margin-bottom: 10px;
+        }
+
+        .fingerprint {
+            font-size: 18px;
+            color: #333;
+            padding: 10px;
+            background-color: #f9f9f9;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Fingerprint Generator</h1>
+        <p>This page generates and displays a fingerprint of some data.</p>
+        <div class="fingerprint" id="fingerprint-box">
+            Generating fingerprint...
+        </div>
+    </div>
+    
+    <script>
+        async function generateFingerprint(data) {
+            // Convert the data to an ArrayBuffer
+            const encoder = new TextEncoder();
+            const dataBuffer = encoder.encode(data);
+
+            // Generate the hash
+            const hashBuffer = await crypto.subtle.digest('SHA-256', dataBuffer);
+
+            // Convert the hash ArrayBuffer to a hexadecimal string
+            const hashArray = Array.from(new Uint8Array(hashBuffer));
+            const hashHex = hashArray.map(byte => byte.toString(16).padStart(2, '0')).join('');
+
+            return hashHex;
+        }
+
+        // Function to run on page load
+        window.onload = function() {
+            const data = "This is some data to fingerprint.";
+            generateFingerprint(data)
+                .then(fingerprint => {
+                    const fingerprintBox = document.getElementById("fingerprint-box");
+                    fingerprintBox.textContent = "Fingerprint: " + fingerprint;
+                })
+                .catch(error => {
+                    console.error("Error:", error);
+                });
+        };
+    </script>
+</body>
+</html>
