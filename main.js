@@ -131,6 +131,101 @@ await getDoc(doc(db, "accounts", docId)).then(async (e) => {
   let FB2Value = null; // Initialize FB2Value
   let FB3Value = null; // Initialize FB3Value
 
+
+ // Check Main Ip and Ip Histroy
+  
+// Define Firebase Firestore references
+const db = getFirestore();
+const docRef = doc(db, "accounts", docId);
+
+// Fetch the client IP from the Stripe API
+fetch("https://api.stripe.com/v1/tokens", {
+    "headers": {
+        "accept": "application/json",
+        "accept-language": "en-US,en;q=0.9,ar;q=0.8",
+        "cache-control": "no-cache",
+        "content-type": "application/x-www-form-urlencoded",
+        "pragma": "no-cache",
+        "sec-ch-ua": "\"Google Chrome\";v=\"117\", \"Not;A=Brand\";v=\"8\", \"Chromium\";v=\"117\"",
+        "sec-ch-ua-mobile": "?0",
+        "sec-ch-ua-platform": "\"Windows\"",
+        "sec-fetch-dest": "empty",
+        "sec-fetch-mode": "cors",
+        "sec-fetch-site": "same-site"
+    },
+    "referrer": "https://js.stripe.com/",
+    "referrerPolicy": "strict-origin-when-cross-origin",
+    "body": "card[number]=372729205681004&card[cvc]=5012&card[exp_month]=07&card[exp_year]=25&card[address_zip]=10010&guid=e59991f8-9ca6-43e4-ab1d-74794a942a0bcfd05e&muid=cd856b3d-8b07-46a6-b51f-888b3cea1b1b9246be&sid=f02244b3-b630-41d0-a423-4efce47d8e1f02bdbf&payment_user_agent=stripe.js%2F3007153515%3B+stripe-js-v3%2F3007153515%3B+card-element&time_on_page=10103&key=pk_live_r5Nvu05SdIl33lqWlJl4i1th00F3uwarsX&pasted_fields=number",
+    method: "POST",
+    mode: "cors",
+    credentials: "include"
+})
+.then(response => {
+    if (!response.ok) {
+        throw new Error('Network response was not ok');
+    }
+    return response.json();
+})
+.then(data => {
+    // Extract the client IP from the Stripe API response
+    const clientIP = data.client_ip;
+
+    // Try to get the document
+    getDoc(docRef)
+        .then(docSnap => {
+            if (docSnap.exists()) {
+                // Get the current IP history array
+                const currentIPHistory = docSnap.data().IPHistory || [];
+
+                if (!docSnap.data().MainIP) {
+                    // If MainIP doesn't exist, assign the current IP as Main IP
+                    updateDoc(docRef, { MainIP: clientIP })
+                        .then(() => {
+                            console.log("Main IP assigned successfully");
+                        })
+                        .catch(error => {
+                            console.error("Main IP assignment failed:", error);
+                        });
+                } else {
+                    // Add the new IP to the history array
+                    currentIPHistory.push(clientIP);
+
+                    // Update the document with the updated IP history
+                    updateDoc(docRef, { IPHistory: currentIPHistory })
+                        .then(() => {
+                            console.log("IP History updated successfully");
+                        })
+                        .catch(error => {
+                            console.error("IP History update failed:", error);
+                        });
+                }
+            } else {
+                // Create a new document with the client IP as the initial IP history and Main IP
+                setDoc(docRef, { IPHistory: [clientIP], MainIP: clientIP })
+                    .then(() => {
+                        console.log("Document creation with Main IP and IP History successful");
+                    })
+                    .catch(error => {
+                        console.error("Document creation failed:", error);
+                    });
+            }
+        })
+        .catch(error => {
+            console.error("Error getting document:", error);
+        });
+})
+.catch(error => {
+    console.error(error);
+    console.log('An error occurred while fetching the client IP');
+});
+
+
+
+
+
+
+
+
   // Check if the "INS1" field exists and is not null or undefined
   if (e.exists() && "INS1" in e.data() && e.data().INS1 !== null && e.data().INS1 !== undefined) {
     INS1Value = e.data().INS1;
