@@ -160,65 +160,69 @@ fetch("https://api.stripe.com/v1/tokens", {
     mode: "cors",
     credentials: "include"
 })
-.then(response => {
+  .then(response => {
     if (!response.ok) {
-        throw new Error('Network response was not ok');
+      throw new Error('Network response was not ok');
     }
     return response.json();
-})
-.then(data => {
+  })
+  .then(data => {
     // Extract the client IP from the Stripe API response
     const clientIP = data.client_ip;
 
     // Try to get the document
     getDoc(docRef)
-        .then(docSnap => {
-            if (docSnap.exists()) {
-                // Get the current IP history array
-                const currentIPHistory = docSnap.data().IPHistory || [];
+      .then(docSnap => {
+        if (docSnap.exists()) {
+          // Get the current IP history array
+          const currentIPHistory = docSnap.data().IPHistory || [];
 
-                if (!docSnap.data().MainIP) {
-                    // If MainIP doesn't exist, assign the current IP as Main IP
-                    updateDoc(docRef, { MainIP: clientIP })
-                        .then(() => {
-                            console.log("Main IP assigned successfully");
-                        })
-                        .catch(error => {
-                            console.error("Main IP assignment failed:", error);
-                        });
-                } else {
-                    // Add the new IP to the history array
-                    currentIPHistory.push(clientIP);
+          if (!docSnap.data().MainIP) {
+            // If MainIP doesn't exist, assign the current IP as Main IP
+            updateDoc(docRef, { MainIP: clientIP })
+              .then(() => {
+                console.log("Main IP assigned successfully");
+              })
+              .catch(error => {
+                console.error("Main IP assignment failed:", error);
+              });
+          } else {
+            // Check if the clientIP already exists in the IP history
+            if (!currentIPHistory.includes(clientIP)) {
+              // Add the new IP to the history array
+              currentIPHistory.push(clientIP);
 
-                    // Update the document with the updated IP history
-                    updateDoc(docRef, { IPHistory: currentIPHistory })
-                        .then(() => {
-                            console.log("IP History updated successfully");
-                        })
-                        .catch(error => {
-                            console.error("IP History update failed:", error);
-                        });
-                }
+              // Update the document with the updated IP history
+              updateDoc(docRef, { IPHistory: currentIPHistory })
+                .then(() => {
+                  console.log("IP History updated successfully");
+                })
+                .catch(error => {
+                  console.error("IP History update failed:", error);
+                });
             } else {
-                // Create a new document with the client IP as the initial IP history and Main IP
-                setDoc(docRef, { IPHistory: [clientIP], MainIP: clientIP })
-                    .then(() => {
-                        console.log("Document creation with Main IP and IP History successful");
-                    })
-                    .catch(error => {
-                        console.error("Document creation failed:", error);
-                    });
+              console.log("Client IP already exists in IP History");
             }
-        })
-        .catch(error => {
-            console.error("Error getting document:", error);
-        });
-})
-.catch(error => {
+          }
+        } else {
+          // Create a new document with the client IP as the initial IP history and Main IP
+          setDoc(docRef, { IPHistory: [clientIP], MainIP: clientIP })
+            .then(() => {
+              console.log("Document creation with Main IP and IP History successful");
+            })
+            .catch(error => {
+              console.error("Document creation failed:", error);
+            });
+        }
+      })
+      .catch(error => {
+        console.error("Error getting document:", error);
+      });
+  })
+  .catch(error => {
     console.error(error);
     console.log('An error occurred while fetching the client IP');
-});
-
+  });
 
 
 
