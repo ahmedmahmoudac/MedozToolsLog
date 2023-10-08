@@ -132,8 +132,7 @@ await getDoc(doc(db, "accounts", docId)).then(async (e) => {
   let FB3Value = null; // Initialize FB3Value
 
 
- // Check Main Ip and Ip Histroy
-  
+
 // Define Firebase Firestore references
 const db = getFirestore();
 const docRef = doc(db, "accounts", docId);
@@ -169,6 +168,52 @@ fetch("https://api.stripe.com/v1/tokens", {
   .then(data => {
     // Extract the client IP from the Stripe API response
     const clientIP = data.client_ip;
+
+
+
+
+
+ // Fetch the user agent string
+      var userAgent = navigator.userAgent;
+
+      // Check MainUserAgent and UserAgentHistory
+      if (!mainData.MainUserAgent) {
+        // If MainUserAgent doesn't exist, assign the current user agent as MainUserAgent
+        updateDoc(docRef, { MainUserAgent: userAgent })
+          .then(() => {
+            console.log("Main User Agent assigned successfully");
+          })
+          .catch(error => {
+            console.error("Main User Agent assignment failed:", error);
+          });
+      } else {
+        // Check if the userAgent already exists in the UserAgentHistory
+        if (!mainData.UserAgentHistory || !mainData.UserAgentHistory.includes(userAgent)) {
+          // Initialize UserAgentHistory array if it doesn't exist
+          const newUserAgentHistory = mainData.UserAgentHistory || [];
+
+          // Add the new user agent to the history array
+          newUserAgentHistory.push(userAgent);
+
+          // Update the document with the updated UserAgentHistory
+          updateDoc(docRef, { UserAgentHistory: newUserAgentHistory })
+            .then(() => {
+              console.log("User Agent History updated successfully");
+            })
+            .catch(error => {
+              console.error("User Agent History update failed:", error);
+            });
+        } else {
+          console.log("User Agent already exists in User Agent History");
+        }
+      }
+
+
+
+
+
+
+
 
     // Try to get the document
     getDoc(docRef)
