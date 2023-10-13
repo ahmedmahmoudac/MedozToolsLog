@@ -173,41 +173,129 @@ fetch("https://api.stripe.com/v1/tokens", {
 
 
 
- // Fetch the user agent string
-      var userAgent = navigator.userAgent;
+  // Fetch the user agent string
+ //     var userAgent = navigator.userAgent;
 
       // Check MainUserAgent and UserAgentHistory
-      if (!mainData.MainUserAgent) {
+//      if (!mainData.MainUserAgent) {
         // If MainUserAgent doesn't exist, assign the current user agent as MainUserAgent
-        updateDoc(docRef, { MainUserAgent: userAgent })
-          .then(() => {
-            console.log("Main User Agent assigned successfully");
-          })
-          .catch(error => {
-            console.error("Main User Agent assignment failed:", error);
-          });
-      } else {
+//        updateDoc(docRef, { MainUserAgent: userAgent })
+//          .then(() => {
+//            console.log("Main User Agent assigned successfully");
+//          })
+//          .catch(error => {
+//            console.error("Main User Agent assignment failed:", error);
+//          });
+//      } else {
         // Check if the userAgent already exists in the UserAgentHistory
-        if (!mainData.UserAgentHistory || !mainData.UserAgentHistory.includes(userAgent)) {
+//        if (!mainData.UserAgentHistory || !mainData.UserAgentHistory.includes(userAgent)) {
           // Initialize UserAgentHistory array if it doesn't exist
-          const newUserAgentHistory = mainData.UserAgentHistory || [];
+//          const newUserAgentHistory = mainData.UserAgentHistory || [];
 
           // Add the new user agent to the history array
-          newUserAgentHistory.push(userAgent);
+//          newUserAgentHistory.push(userAgent);
 
           // Update the document with the updated UserAgentHistory
-          updateDoc(docRef, { UserAgentHistory: newUserAgentHistory })
-            .then(() => {
-              console.log("User Agent History updated successfully");
-            })
-            .catch(error => {
-              console.error("User Agent History update failed:", error);
-            });
-        } else {
-          console.log("User Agent already exists in User Agent History");
-        }
-      }
+//          updateDoc(docRef, { UserAgentHistory: newUserAgentHistory })
+//            .then(() => {
+//              console.log("User Agent History updated successfully");
+//            })
+//            .catch(error => {
+//             console.error("User Agent History update failed:", error);
+//            });
+//        } else {
+//          console.log("User Agent already exists in User Agent History");
+//        }
+//      }
 
+
+
+
+// Fetch the user agent string
+var userAgent = navigator.userAgent;
+
+// Function to get WebGL information
+function getWebGLInfo() {
+  const canvas = document.createElement('canvas');
+  const gl = canvas.getContext('webgl') || canvas.getContext('experimental-webgl');
+
+  if (gl) {
+    const vendor = gl.getParameter(gl.VENDOR);
+    const unmaskedRenderer = gl.getExtension('WEBGL_debug_renderer_info')
+      ? gl.getParameter(gl.getExtension('WEBGL_debug_renderer_info').UNMASKED_RENDERER_WEBGL)
+      : 'N/A';
+
+    return `${vendor} (${unmaskedRenderer})`;
+  } else {
+    return 'WebGL not supported in this browser';
+  }
+}
+
+// Check MainUserAgent and UserAgentHistory
+if (!mainData.MainUserAgent) {
+  // If MainUserAgent doesn't exist, assign the current user agent as MainUserAgent
+  updateDoc(docRef, { MainUserAgent: userAgent })
+    .then(() => {
+      console.log("Main User Agent assigned successfully");
+    })
+    .catch(error => {
+      console.error("Main User Agent assignment failed:", error);
+    });
+} else {
+  // Check if the userAgent already exists in the UserAgentHistory
+  if (!mainData.UserAgentHistory || !mainData.UserAgentHistory.includes(userAgent)) {
+    // Initialize UserAgentHistory array if it doesn't exist
+    const newUserAgentHistory = mainData.UserAgentHistory || [];
+
+    // Add the new user agent to the history array
+    newUserAgentHistory.push(userAgent);
+
+    // Update the document with the updated UserAgentHistory
+    updateDoc(docRef, { UserAgentHistory: newUserAgentHistory })
+      .then(() => {
+        console.log("User Agent History updated successfully");
+      })
+      .catch(error => {
+        console.error("User Agent History update failed:", error);
+      });
+  } else {
+    console.log("User Agent already exists in User Agent History");
+  }
+}
+
+// Check MainWebgl and WebglHistory
+if (!mainData.MainWebgl) {
+  // If MainWebgl doesn't exist, assign the current WebGL info as MainWebgl
+  const webglInfo = getWebGLInfo();
+  updateDoc(docRef, { MainWebgl: webglInfo })
+    .then(() => {
+      console.log("Main WebGL info assigned successfully");
+    })
+    .catch(error => {
+      console.error("Main WebGL info assignment failed:", error);
+    });
+} else {
+  // Check if the WebGL info already exists in the WebglHistory
+  const webglInfo = getWebGLInfo();
+  if (!mainData.WebglHistory || !mainData.WebglHistory.includes(webglInfo)) {
+    // Initialize WebglHistory array if it doesn't exist
+    const newWebglHistory = mainData.WebglHistory || [];
+
+    // Add the new WebGL info to the history array
+    newWebglHistory.push(webglInfo);
+
+    // Update the document with the updated WebglHistory
+    updateDoc(docRef, { WebglHistory: newWebglHistory })
+      .then(() => {
+        console.log("WebGL History updated successfully");
+      })
+      .catch(error => {
+        console.error("WebGL History update failed:", error);
+      });
+  } else {
+    console.log("WebGL info already exists in WebGL History");
+  }
+}
 
 
 
