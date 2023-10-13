@@ -6,7 +6,7 @@
 
 /*1*/
 import { initializeApp } from 'https://www.gstatic.com/firebasejs/9.8.2/firebase-app.js';
-import { getFirestore, collection, getDocs,getDoc, setDoc, addDoc, doc,query,where } from 'https://www.gstatic.com/firebasejs/9.8.2/firebase-firestore.js';
+import { getFirestore, collection, getDocs,getDoc, setDoc, addDoc, doc,query,where , updateDoc} from 'https://www.gstatic.com/firebasejs/9.8.2/firebase-firestore.js';
 
 // TODO: Replace the following with your app's Firebase project configuration
 const firebaseConfig = {
