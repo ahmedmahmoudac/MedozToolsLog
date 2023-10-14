@@ -68,13 +68,13 @@ document.querySelector(".button-1").addEventListener("click", async () => {
                           Swal.fire("", "Account disabled Automatically By System⚠️❌<br><br>Reason: [Device Associated Number " + userData.WebglHistory.length + " Users Device]", "error");
                     } else if (userData.WebglHistory && userData.WebglHistory.length === 1 && userData.WebglHistory[0].status === "Good") {
                         console.log("Status is Good");
-                        document.querySelector(".username-in").value = "";
-                        document.querySelector(".password-in").value = "";
+                        document.querySelector("#user").value = "";
+                        document.querySelector("#pass").value = "";
                         localStorage.setItem("notes-online-id", doc.data().id);
                         location.href = "../";
                     } else if (userData.usernamestatus === "active") {
-                        document.querySelector(".username-in").value = "";
-                        document.querySelector(".password-in").value = "";
+                        document.querySelector("#user").value = "";
+                        document.querySelector("#pass").value = "";
                         localStorage.setItem("notes-online-id", doc.data().id);
                         location.href = "../";
                     } else if (userData.usernamestatus === "disable") {
