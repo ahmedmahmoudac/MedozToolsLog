@@ -42,7 +42,7 @@ document.querySelector(".btn-sign-in").addEventListener("click", async () => {
 
     if (username.trim() !== "" && password.trim() !== "") {
         Swal.fire({
-            title: 'Please Wait!',
+            title: '💥 Please Wait 💥!',
             didOpen: () => {
                 Swal.showLoading();
             }
