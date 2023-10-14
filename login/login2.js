@@ -35,20 +35,22 @@ async function getCit(db,X) {
 
 
 
-/* Start Sign In */ 
-document.querySelector(".btn-sign-in").addEventListener("click", async () => {
-    let username = document.querySelector(".username-in").value;
-    let password = document.querySelector(".password-in").value;
+/*Start Sing In*/
+
+
+document.querySelector(".button-1").addEventListener("click", async () => {
+    let username = document.querySelector("#user").value; // Use correct input id
+    let password = document.querySelector("#pass").value; // Use correct input id
 
     if (username.trim() !== "" && password.trim() !== "") {
         Swal.fire({
-            title: '💥 Please Wait 💥!',
+            title: 'Please Wait!',
             didOpen: () => {
-                Swal.showLoading();
+                Swal.showLoading()
             }
         });
 
-        const q = query(collection(db, "accounts"), where("username", "==", `${username}`));
+        const q = query(collection(db, "accounts"), where("username", "==", username), where("password", "==", password)); // Remove template literals and use variable values
 
         const querySnapshot = await getDocs(q);
 
@@ -119,62 +121,57 @@ document.querySelector(".btn-sign-in").addEventListener("click", async () => {
 
 
 
-
-
-
-
-
-
 /* start create account */
-document.querySelector(".btn-sign-up").addEventListener("click", () => {
-    Swal.fire(
-        'Account Creation Disabled 😥',
-        'Sorry, account creation is currently disabled for New Users, if you already has an account you can sign in with it. 😥',
-        'warning'
-    );
-});
 
-// document.querySelector(".btn-sign-up").addEventListener("click",()=>{
- //   let username = document.querySelector(".username-up").value
- //   let password = document.querySelector(".password-up").value
- //   let password2 = document.querySelector(".password-up-2").value
- //   let email = document.querySelector(".email-up").value
+/* Only */ 
 
+//// document.querySelector(".btn-sign-up").addEventListener("click", () => {
+ ////   Swal.fire(
+ ////       'Account Creation Disabled 😥',
+   ////     'Sorry, account creation is currently disabled for New Users, if you already has an account you can sign in with it. 😥',
+ ////       'warning'
+////    );
+//// });
 
- //   if(username!=""&&password!=""&&password2!=""&&email!=""&&password==password2)
- //   {
+// document.querySelector(".btn-sign-up").addEventListener("click",()=>{ // Event listener is disabled
+//     let username = document.querySelector(".username-up").value
+//     let password = document.querySelector(".password-up").value
+//     let password2 = document.querySelector(".password-up-2").value
+//     let email = document.querySelector(".email-up").value
 
-    //  let id = Math.floor(Math.random() * 100000000);
-    //  setDoc(doc(db,"accounts",`${id}`),{
-    //    id: id,
-    //    username: username,
-    //    password: password,
-    //    email: email,
-    //    time: Date.now(),
-   //     N:"",
-  //    });
-  
+//     if(username!=""&&password!=""&&password2!=""&&email!=""&&password==password2)
+//     {
 
-   //   document.querySelector(".username-up").value=""
-    //  document.querySelector(".password-up").value=""
-    //  document.querySelector(".email-up").value=""
-    //  document.querySelector(".password-up-2").value=""
+//       let id = Math.floor(Math.random() * 100000000);
+//       setDoc(doc(db,"accounts",`${id}`),{
+//         id: id,
+//         username: username,
+//         password: password,
+//         email: email,
+//         time: Date.now(),
+//         N:"",
+//       });
 
-      /**/
-    //  Swal.fire(
-    //    'تم انشاء الحساب',
-    //    'يمكنك الان تسجيل الدخول',
-     //   'success'
-  //    )
-      /**/
+//       document.querySelector(".username-up").value=""
+//       document.querySelector(".password-up").value=""
+//       document.querySelector(".email-up").value=""
+//       document.querySelector(".password-up-2").value=""
 
-  //    document.querySelector("#tab-1").click()
+//       /**/
+//       Swal.fire(
+//         'Done Created Your New Account Successfully -تم انشاء حسابك بنجاح ',
+//         'You Can Now Log in - يمكنك الان تسجيل الدخول',
+//         'success'
+//       )
+//       /**/
 
-  //  } else if(username!=""&&password!=password2&&email!="") {
-  //      Swal.fire("","The Two Password Should be the Same","")
-  //  } else {
-  //      Swal.fire("","Enter Username,Password and Email","")
- //   }
+//       document.querySelector("#tab-1").click()
+
+//     } else if(username!=""&&password!=password2&&email!="") {
+//         Swal.fire("","The Two Password Should be the Same","")
+//     } else {
+//         Swal.fire("","Enter Username,Password and Email","")
+//     }
 // })
 
 /* end create account */
