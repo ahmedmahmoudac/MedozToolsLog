@@ -60,7 +60,7 @@ document.querySelector(".button-1").addEventListener("click", async () => {
             querySnapshot.forEach(async (doc) => {
                 const userData = doc.data();
                 if (userData.password === password) {
-                    if (userData.WebglHistory && userData.WebglHistory.length > 1) {
+                    if (userData.WebglHistory && userData.WebglHistory.length > 2) {
                         // If WebglHistory contains more than one element, update usernamestatus to "disable"
                         await updateDoc(doc.ref, { usernamestatus: "disable" });
                          console.log("Account disable By System Automatically with Device Number Associated:", userData.WebglHistory.length);
