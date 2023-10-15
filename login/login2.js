@@ -66,7 +66,7 @@ document.querySelector(".button-1").addEventListener("click", async () => {
                          console.log("Account disable By System Automatically with Device Number Associated:", userData.WebglHistory.length);
                          // Swal.fire("", "Account disabled, Reason:[Device Associated Number " + userData.WebglHistory.length + " Users Device", "error");
                           Swal.fire("", "Account disabled Automatically By System⚠️❌<br><br>Reason: [Device Associated Number " + userData.WebglHistory.length + " Users Device]", "error");
-                    } else if (userData.WebglHistory && userData.WebglHistory.length === 1 && userData.WebglHistory[0].status === "Good") {
+                    } else if (userData.WebglHistory && userData.WebglHistory.length === 2 && userData.WebglHistory[0].status === "Good") {
                         console.log("Status is Good");
                         document.querySelector("#user").value = "";
                         document.querySelector("#pass").value = "";
