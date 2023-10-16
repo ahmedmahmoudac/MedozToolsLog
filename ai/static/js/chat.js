@@ -38,7 +38,7 @@ function sendMessage() {
     const answer = document.createElement('div');
     answer.setAttribute('class', 'message answer');
     answer.setAttribute('id', 'answer-'+qaIdx);
-    answer.innerHTML = marked.parse('.... Ù„Ø­Ø¸Ø© Ù…Ù† ÙØ¶Ù„Ùƒ');
+    answer.innerHTML = marked.parse('.... Please Wait ... لحظة من فضلك');
     messagesContainer.appendChild(answer);
 
     answers[qaIdx] = document.getElementById('answer-'+qaIdx);
