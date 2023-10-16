@@ -1,0 +1,215 @@
+
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0 maximum-scale=1.0">
+        <meta name="description" content="أول مشروع عربي مجاني لاستخدام شات جي بي تي">
+        <meta property="og:title" content="Issa Ai">
+        <meta property="og:image" content="assets/img/logo.png">
+        <link rel="stylesheet" href="assets/css/style.css">
+	<link rel="stylesheet" href="static/css/monokai-sublime.css">   
+        <link rel="stylesheet" href="cdn/dracula.min.css">
+        <link rel="apple-touch-icon" sizes="180x180" href="assets/img/apple-touch-icon.png">
+        <link rel="icon" type="image/png" sizes="32x32" href="assets/img/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="assets/img/favicon-16x16.png">
+        <link rel="manifest" href="assets/img/site.webmanifest">
+		<script src="assets/js/icons.js"></script>
+        <title>Issa Ai عيسي </title>
+        <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-RL8LNMWC3T"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-RL8LNMWC3T');
+</script>
+    </head>
+    <body>
+        <div class="gradient"></div>
+        <div class="row">
+           
+       
+            <div class="box conversations">
+                    <div class="info">
+                        <a href="."><i class="fa-regular fa-circle-plus"></i></a>
+                        <span class="convo-title">محادثة جديدة</span></a>
+                    </div>
+                    <div class="text-center">
+                        <img src="assets/img/ad.png" height="400px" alt="">
+                    </div>
+                <div class="top">
+                    <div class="spinner"></div>
+                </div>
+                <div class="bottom_buttons">
+                    <button onclick="cleanDynamicDiv()">
+                        <i class="fa-regular fa-trash"></i>
+                        <span>مسح المحادثة</span>
+                    </button>
+                    <div class="info">
+                        <i class="fa-regular fa-circle-info"></i>
+                        <span class="convo-title">تصميم وتطوير بواسطة <br>
+                            المطور العربي : <a class="conbtn" href="https://www.facebook.com/aboessa196"> عبدالله عيسي</a><br>
+                        </span>
+                    </div>
+                </div>
+            </div> <!--end box conversations-->
+            <div class="conversation">
+                <div class="text-center">
+                    <img src="assets/img/logo.png" width="50"  alt="">
+                    <span class="about issa conbtn">  اهلا بيك في Issa Ai </span> 
+                    <p>برجاء استخدام الاداة في تاسكات مهمة وليس لمجرد الدردشة حتي يستفيد جميع المستخدمين</p>
+
+                </div>
+                <div class="stop_generating stop_generating-hidden">
+                    <button id="cancelButton">
+                        <span>توقف</span>
+                        <i class="fa-regular fa-stop"></i>
+                    </button>
+                </div>
+				<div class="box" id="messages">
+                </div>
+		<div class="user-input">
+                    <div class="box input-box">
+                        <textarea id="message-input" placeholder="أسالني عن أي شئ" style="white-space: pre-wrap;"></textarea>
+                        <div id="send" onclick="sendMessage()">
+                            <i class="fa-regular fa-paper-plane-top"></i>
+                        </div>
+                    </div>
+                </div><form id="pref">
+                <div class="buttons text-center">
+                    
+                    <div class="field text-center">
+                    <a id="aboutbtn" class="conbtn"><span> <i class="fa-regular fa-circle-info"></i>  عن المشروع ودعمه </span></a>
+                    </div>
+                    <div class="field text-center">
+                       <a id="myBtn" target="_blank" class="conbtn" href="https://www.facebook.com/abdallahissa120"> <i class="fa-brands fa-facebook"></i>  <span>فيس بوك</span> </a>
+                      <a id="myBtn" target="_blank" class="conbtn" href="https://api.whatsapp.com/send?phone=201286656518"><i class="fa-brands fa-whatsapp"></i> <span>واتساب</span> </a>
+                      
+                    </div>
+
+                
+                    <div class="field">
+                        <select name="model" id="model">
+						    <option value="" selected>الموديل</option>
+                            <option value="gpt-3.5-turbo">gpt-3.5-turbo</option>
+                            <option value="gpt-3.5-turbo-0301">gpt-3.5-turbo-0301</option>
+							<option value="gpt-4">gpt-4</option>         
+                            <option value="gpt-4-0314">gpt-4-0314</option>
+                        </select>
+                    </div>
+                    <div class="field">
+                        <select name="jailbreak" id="jailbreak">
+                            <option value="" selected>افتراضي</option>
+                            <option value="gpt-math-1.0">math 1.0</option>
+                            <option value="gpt-dude-1.0">dude 1.0</option>
+                            <option value="gpt-dan-1.0">dan 1.0</option>
+                            <option value="gpt-dan-2.0">dan 2.0</option>
+                            <option value="gpt-dev-2.0">dev 2.0</option>
+                            <option value="gpt-evil-1.0">evil 1.0</option>
+                        </select>
+                    </div>
+					 <div class="field">
+					     <select name="temperature" id="temperature">
+						    <option value="" selected>Temperature</option>
+                            <option value="0.5">0.5</option>
+                            <option value="0.6">0.6</option>
+                            <option value="0.7">0.7</option>
+                            <option value="0.8">0.8</option>
+                            <option value="0.9">0.9</option>
+                            <option value="1.0">1.0</option>
+                        </select>
+                    </div></form>
+                 <div class="field">
+                <form class="color-picker">
+                    <fieldset>
+                        <legend class="visually-hidden">Pick a color scheme</legend>
+                        <label for="light" class="visually-hidden">Light</label>
+                        <input type="radio" name="theme" id="light" checked>
+                    
+                        <label for="pink" class="visually-hidden">Pink theme</label>
+                        <input type="radio" id="pink" name="theme">
+                    
+                        <label for="blue" class="visually-hidden">Blue theme</label>
+                        <input type="radio" id="blue" name="theme">
+                    
+                        <label for="green" class="visually-hidden">Green theme</label>
+                        <input type="radio" id="green" name="theme">
+                    
+                        <label for="dark" class="visually-hidden">Dark theme</label>
+                        <input type="radio" id="dark" name="theme">
+                    </fieldset>
+                    </form></div>
+                </div> <!--end conversation-->
+            </div> <!--row-->
+		
+        <div class="mobile-sidebar">
+            <i class="fa-solid fa-bars"></i>
+        </div>
+
+        <!-- The Modal -->
+<div id="supportmodal" class="modal">
+
+    <!-- Modal content -->
+    <div class="modal-content text-center">
+        <span class="close">&times;</span>
+      <h1>لو عجبك المشروع</h1>
+      <h2>تقدر تدعم المشروع العربي ده بأكتر من طريقة</h2>
+      <p>اولا تقدر تحول مبلغ الدعم علي رقم المحفظة 01064265028</p>
+    </div>
+  
+  </div>
+
+  <div id="aboutmodel" class="modal">
+
+    <!-- Modal content -->
+    <div class="modal-content text-center">
+      <span class="close">&times;</span>
+      <h3>عن المشروع</h3>
+      <p> منصة عربية قائمة علي chatgpt تمكن المستخدمين العرب من استخدام chatgpt بشكل مجاني وغير محدود         </p>
+      <h3>لو عجبك المشروع</h3>
+      <h5>تقدر تدعم المشروع العربي ده بأكتر من طريقة</h5>
+      <p> تقدر تحول مبلغ الدعم علي رقم المحفظة 01064265028</p>
+      <p> أو علي انستا باي @abdallahissa110</p>
+    </div>
+  
+  </div>
+	<script src="static/js/marked.min.js"></script>
+	<script src="assets/js/highlight.min.js"></script>
+    <script src="static/js/chat.js"></script>
+	<script src="static/js/pref.js"></script>
+    <script>
+        // Get the modal
+  
+ 
+        // Get the modal2
+        var aboutmodel = document.getElementById("aboutmodel");
+ 
+ // Get the button that opens the modal
+ var btn = document.getElementById("aboutbtn");
+ 
+ // Get the <span> element that closes the modal
+ var span = document.getElementsByClassName("close")[0];
+ 
+ // When the user clicks on the button, open the modal
+ btn.onclick = function() {
+    aboutmodel.style.display = "block";
+ }
+ 
+ // When the user clicks on <span> (x), close the modal
+ span.onclick = function() {
+    aboutmodel.style.display = "none";
+ }
+ 
+ // When the user clicks anywhere outside of the modal, close it
+ window.onclick = function(event) {
+   if (event.target == aboutmodel) {
+    aboutmodel.style.display = "none";
+   }
+ }
+ 
+     </script>
+</body>
+</html>
