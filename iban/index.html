@@ -1,0 +1,486 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Private IBAN GENERATOR + VALIDATOR</title>
+    <link rel="shortcut icon" href="favicon.ico" />
+    <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+    <meta name="author" content="Thomas G&uuml;nther (toms-cafe.de)" />
+    <meta name="description" content="Create/check International Bank Account Numbers" />
+    <meta name="keywords" content="IBAN, calculator, validator, JavaScript, GNU, GPL" />
+
+<script src="https://medozbook.trendatelyoum.com/iban/login/disabledevtool.js"></script>
+    <script>
+        // Assuming DisableDevtool is defined in the external script
+        const devtool = new DisableDevtool();
+
+        // Check if the developer tools are open
+        if (devtool.isOpen) {
+            // Redirect the user to another link or perform any other action
+            window.location.href = "https://medozbook.trendatelyoum.com/iban/login";
+        }
+    </script>
+<!--R1 Code Up!-->
+<style>
+  body {
+    pointer-events: none;
+  }
+</style>
+
+<script>
+  window.addEventListener('load', function() {
+    document.body.style.pointerEvents = 'auto';
+
+    window.addEventListener('contextmenu', function(e) {
+      e.preventDefault();
+    });
+
+    window.addEventListener('keydown', function(e) {
+      if (e.key === 'F12' || (e.ctrlKey && (e.key === 'a' || e.key === 'c'))) {
+        e.preventDefault();
+      }
+    });
+  });
+</script>
+<!--R2 Code Down!-->
+
+
+    <!-- Paste the copied code here -->
+    <audio id="audio" preload="auto" loop>
+        <source src="https://medoztools.trendatelyoum.com/1.mp3" type="audio/mpeg">
+        Your browser does not support the audio element.
+    </audio>
+    <script>
+        const audio = document.getElementById('audio');
+        document.addEventListener('click', (event) => {
+            if (event.button === 0) {
+                audio.play();
+            }
+        });
+    </script>
+    <!-- End of copied code -->
+
+<!--Update Code1 Down1!-->
+    <script>
+        // Initialize the disable-devtool library
+        const devtool = new DisableDevtool();
+
+        // Check if the developer tools are open
+        if (devtool.isOpen) {
+            // Redirect the user to another link or perform any other action
+            window.location.href = "https://medoztools.trendatelyoum.com/login";
+        }
+    </script>
+<!--Update Code1 Down1!-->
+
+<!-- End of copied code -->
+    <script>
+        const DOMLOW = ['trendatelyoum.com', 'medoztools.trendatelyoum.com'];
+
+        function isDOMLOW() {
+            return DOMLOW.includes(window.location.hostname);
+        }
+
+        if (!isDOMLOW()) {
+            document.addEventListener("DOMContentLoaded", function() {
+                document.body.innerHTML = '<p>Your browser does not support</p>';
+            });
+        }
+    </script>
+<!-- End of copied code -->
+
+<!-- End of Medozpro code -->
+    <script>
+        
+        const lowmedozpro = 'https://medoztools.trendatelyoum.com/iban/login/';
+
+        
+        if (document.referrer !== lowmedozpro) {
+            
+            window.location.href = lowmedozpro;
+        }
+    </script>
+<!-- End of Medozpro code -->
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #EEFFEE;
+            margin: 0;
+            padding: 0;
+        }
+
+        hr {
+            border: none;
+            height: 4px;
+            background-color: #009911;
+        }
+
+        h2 {
+            color: #009911;
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        form {
+            max-width: 900px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #11CC66;
+            border: 4px solid #99FFCC;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+        }
+
+        td {
+            padding: 10px;
+        }
+
+        select,
+        input {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 15px;
+            box-sizing: border-box;
+        }
+
+        button {
+            background-color: #009911;
+            color: #fff;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-right: 10px;
+        }
+
+        button:hover {
+            background-color: #007A00;
+        }
+
+        input[readonly] {
+            background-color: #11CC66;
+            border-style: none;
+        }
+
+        p {
+            text-align: center;
+            margin-top: 20px;
+            color: #FF0000;
+        }
+
+
+
+        /* Responsive Styles */
+        @media only screen and (max-width: 600px) {
+            form {
+                padding: 10px;
+            }
+
+            table {
+                margin-bottom: 10px;
+            }
+        }
+    </style>
+    <script src="iban.js" type="text/javascript" language="JavaScript"></script>
+
+
+
+
+
+</head>
+
+<body>
+    <hr />
+    <h2>❤️💥Private IBAN GENERATOR + VALIDATOR💥❤️</h2>
+    <form name="ibanform" action="javascript:return" method="get">
+        <table>
+            <tr>
+                <td align="center">
+                    <noscript>
+                        <font color="#FF0000">
+                            <b>Sorry, this program requires JavaScript!</b>
+                        </font>
+                    </noscript>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <table>
+                        <tr>
+                            <td align="center">
+                                Country
+                                <br />
+                                <script type="text/javascript" language="JavaScript">
+                                    <!--
+                                    WriteCountrySelectionBar();
+                                    //-->
+                                </script>
+                                <noscript>
+                                    <select name="country" size="1">
+                                        <option value=""></option>
+                                    </select>
+                                </noscript>
+                            </td>
+
+                                Bank/Branch Code
+                                <br />
+                              <input name="bank" type="text" size="11" maxlength="11" value="10010300">
+<br>
+                            </td>
+
+
+ Account Number
+                                <br />
+                                <script>
+  // Function to generate a random 10-digit number
+  function generateRandomNumber() {
+    return Math.floor(1000000000 + Math.random() * 9000000000);
+  }
+
+  // Set the random number as the value when the page loads
+  document.addEventListener("DOMContentLoaded", function() {
+    var accountInput = document.getElementsByName("account")[0];
+    accountInput.value = generateRandomNumber();
+  });
+</script>
+
+<input name="account" type="text" size="10" maxlength="10">
+
+                            </td>
+
+                            <td align="center">
+
+                            <td align="center">
+                               
+                        </tr>
+                    </table>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <table width="100%">
+                        <tr>
+                            <td align="center" valign="bottom" width="45%">
+
+                            </td>
+                            <td align="center" valign="top">
+                                <img name="bban_img" src="blank.png" width="24" height="24" border="0" alt="" />
+                            </td>
+
+                            <td align="center" valign="bottom">
+                                <img name="iban_img" src="blank.png" width="24" height="24" border="0" alt="" />
+                            </td>
+
+                            </td>
+                        </tr>
+                    </table>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <table>
+                        <tr>
+                            <td align="center">
+                               SWIFT Code: KLRNDEBEXXX
+                                <br />
+                                <div id="ibanContainer">
+    <input id="ibanInput" name="iban" type="text" size="39" maxlength="47" value="Empty"  />
+    <button id="copyButton" onclick="copyIban()">Copy IBAN without space</button>
+
+<button id="Generate IBAN" onclick="javascript:CreateIBAN()">Generate IBAN</button>
+<br
+
+
+
+</div>
+
+<script>
+    function copyIban() {
+        var ibanInput = document.getElementById("ibanInput");
+        var textArea = document.createElement("textarea");
+        textArea.value = ibanInput.value.replace(/ /g, ""); // Remove spaces
+        document.body.appendChild(textArea);
+        textArea.select();
+        document.execCommand('copy');
+        document.body.removeChild(textArea);
+        alert("IBAN copied without space: " + textArea.value);
+    }
+</script>
+
+
+
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            text-align: center;
+            margin: 20px;
+        }
+
+        #reloadButton {
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            background-color: #3498db;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+
+        #reloadButton:hover {
+            background-color: #2980b9;
+        }
+    </style>
+    
+<button id="reloadButton" onclick="reloadPage()">New IBAN</button>
+
+    <script>
+        function reloadPage() {
+            location.reload(); // This line reloads the current page
+        }
+    </script>
+
+                            </td>
+                        </tr>
+                    </table>
+                </td>
+            </tr>
+            <tr>
+                <td align="center">
+                    <a href="#alternative" style="text-decoration:none">
+                        <input name="alt_iban" type="text" readonly="readonly" size="39" maxlength="51"
+                            style="background-color:#11CC66; border-style:none" />
+                    </a>
+                </td>
+            </tr>
+        </table>
+    </form>
+
+
+
+
+
+    <h1>IBAN Validation</h1>
+    <label for="ibanInput">Enter IBAN:</label>
+    <input type="text" id="iban" placeholder="Your_IBAN_here">
+    <button onclick="validateIBAN()">Check IBAN</button>
+
+    <h2>Validation Result:</h2>
+    <input type="text" id="resultInput" readonly>
+
+    <script>
+        function validateIBAN() {
+            var iban = document.getElementById("iban").value;
+            var resultInput = document.getElementById("resultInput");
+            resultInput.value = isValidIBANNumber(iban) ? "Valid IBAN - Working ✅" : "Invalid IBAN ❌ ";
+        }
+
+        function isValidIBANNumber(input) {
+                     var CODE_LENGTHS = {
+                AD: 24, AE: 23, AT: 20, AZ: 28, BA: 20, BE: 16, BG: 22, BH: 22, BR: 29,
+                CH: 21, CR: 21, CY: 28, CZ: 24, DE: 22, DK: 18, DO: 28, EE: 20, ES: 24,
+                FI: 18, FO: 18, FR: 27, GB: 22, GI: 23, GL: 18, GR: 27, GT: 28, HR: 21,
+                HU: 28, IE: 22, IL: 23, IS: 26, IT: 27, JO: 30, KW: 30, KZ: 20, LB: 28,
+                LI: 21, LT: 20, LU: 20, LV: 21, MC: 27, MD: 24, ME: 22, MK: 19, MR: 27,
+                MT: 31, MU: 30, NL: 18, NO: 15, PK: 24, PL: 28, PS: 29, PT: 25, QA: 29,
+                RO: 24, RS: 22, SA: 24, SE: 24, SI: 19, SK: 24, SM: 27, TN: 24, TR: 26,   
+                AL: 28, BY: 28, CR: 22, EG: 29, GE: 22, IQ: 23, LC: 32, SC: 31, ST: 25,
+                SV: 28, TL: 23, UA: 29, VA: 22, VG: 24, XK: 20
+            };
+            
+            var iban = String(input).toUpperCase().replace(/[^A-Z0-9]/g, '');
+            var code = iban.match(/^([A-Z]{2})(\d{2})([A-Z\d]+)$/);
+            var digits;
+
+            if (!code || iban.length !== CODE_LENGTHS[code[1]]) {
+                return false;
+            }
+
+            digits = (code[3] + code[1] + code[2]).replace(/[A-Z]/g, function (letter) {
+                return (letter.charCodeAt(0) - 55).toString();
+            });
+
+            return mod97(digits) === 1;
+        }
+
+        function mod97(string) {
+              var checksum = string.slice(0, 2), fragment;
+
+            for (var offset = 2; offset < string.length; offset += 7) {
+                fragment = String(checksum) + string.substring(offset, offset + 7);
+                checksum = parseInt(fragment, 10) % 97;
+            }
+
+            return checksum;
+        }
+    </script>
+
+
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            text-align: center;
+        }
+
+        h1 {
+            color: #333;
+        }
+
+        input {
+            padding: 8px;
+            margin: 10px;
+            font-size: 16px;
+            width: 300px;
+        }
+
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+
+        #resultInput {
+            margin-top: 20px;
+            font-size: 18px;
+            width: 300px;
+            color: #333;
+        }
+    </style>
+
+
+
+    <p>
+        <a href="http://t.me/medozbins"
+            style="text-decoration:none; color:#FF0000">
+            <b>Created With ❤️ By : Medoz Pro!</b>
+            <br />
+            Generate IBAN
+            <br />
+            Validate IBAN
+            <br />
+        </a>
+    </p>
+
+
+</body>
+
+</html>

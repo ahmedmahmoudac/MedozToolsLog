@@ -1,0 +1,205 @@
+/*
+Template Name: sForum - Login & Register Form Template
+Description: sForum - Login & Register Form Template
+Author: CodexUnicTheme
+Version: 1.0
+*/
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,400;1,500;1,700&family=Roboto+Slab:wght@300;400;500;600;700;800;900&display=swap');
+:root {
+  --body-color: #444;
+  --main-color: #1e1b39;
+  --primary-color: #5f3afc;
+  --headding-color: #0B2B3C;
+  --section-bg: #dadfe4;
+  --btn-color2: #ED2C41;
+}
+body{
+    margin: 0;
+    padding: 0;
+    font-size: 15px;
+    color: var(--body-color);
+    font-family: 'Poppins', sans-serif;
+    font-weight: normal;
+    font-style: normal;
+}
+a,
+button {
+    -webkit-transition: all 0.3s ease-out 0s;
+    -moz-transition: all 0.3s ease-out 0s;
+    -ms-transition: all 0.3s ease-out 0s;
+    -o-transition: all 0.3s ease-out 0s;
+    transition: all 0.3s ease-out 0s;
+}
+*::-moz-selection {
+    background: var(--primary-color);
+    color: #fff;
+    text-shadow: none;
+}
+::-moz-selection {
+    background: var(--primary-color);
+    color: #fff;
+    text-shadow: none;
+}
+::selection {
+    background: var(--primary-color);
+    color: #fff;
+    text-shadow: none;
+}
+h1,h2,h3,h4,h5,h6,p{
+    margin:0;
+    padding: 0;
+}
+h1,h1,h2,h3,h4,h5,h6{
+    color: var(--headding-color);
+    font-weight: 700;
+    font-family: 'Roboto Slab', serif;
+}
+ul{
+    margin:0;
+    padding: 0;
+    list-style: none;
+}
+a{
+    text-decoration: none;
+    transition: .4s;
+    -webkit-transition: all .4s ease-in-out;
+}
+a:hover{
+    text-decoration: none;
+    color: var(--primary-color);
+}
+button:focus{
+    outline: none;
+}
+input:focus{
+    outline: none;
+}
+textarea:focus{
+    outline: none;
+}
+p{
+    color: var(--main-color);
+    line-height: 26px;
+}
+img{
+    max-width:100%;
+}
+.section-bg{
+    background-color: var(--section-bg);
+}
+.section-padding{
+    padding: 100px 0px;
+}
+.section-padding-2{
+    padding-top: 100px;
+    padding-bottom: 70px;
+}
+.section-padding-80{
+    padding: 80px 0px;
+}
+.section-padding-70{
+    padding: 70px 0px;
+}
+.section-padding-50{
+    padding: 50px 0px;
+}
+.text-right{
+    text-align: right;
+}
+.bforum-main {
+    background: linear-gradient(45deg, #0f23ff, #ff0f8d, #9064ff);
+}
+.login-register-section {
+    max-width: 420px;
+    margin: 50px auto;
+    background: #fff;
+    padding: 30px 40px;
+    text-align: center;
+    border-radius: 5px;
+    box-sizing: border-box;
+    box-shadow: 0px 0px 10px 0px #cccccca1;
+}
+.login-register-section form {
+    text-align: left;
+    width: 100%;
+    margin-bottom: 20px;
+}
+.login-register-section h2 {
+    font-size: 30px;
+    margin-bottom: 30px;
+}
+.single-input {
+    margin-bottom: 20px;
+    position: relative;
+}
+.single-input label {
+    display: inline-block;
+    font-size: 15px;
+    font-weight: 500;
+    margin-bottom: 4px;
+}
+.single-input input {
+    width: 100%;
+    padding: 10px 15px;
+    font-weight: 500;
+    font-size: 15px;
+    transition: all .3s ease;
+    border: none;
+    border-bottom: 2px solid #dddddda3;
+    position: relative;
+    padding-left: 25px;
+}
+.single-input input:focus {
+    border-color: var(--primary-color);
+}
+.single-input i{
+    position: absolute;
+    bottom: 6px;
+    left: 0px;
+    font-size: 18px;
+}
+p.forget {
+    text-align: right;
+    margin-bottom: 10px;
+    font-size: 14px;
+}
+p.forget a{
+    color: var(--body-color);
+}
+p.forget a:hover{
+    color: var(--primary-color);
+}
+.button-1 {
+    padding: 14px 20px;
+    text-align: center;
+    width: 100%;
+    border-radius: 30px;
+    border: none;
+    background: linear-gradient(45deg, #0f23ff, #00096b, #9064ff);
+    color: #fff;
+    font-weight: 600;
+    text-transform: capitalize;
+    letter-spacing: 1px;
+}
+.google-btn {
+    margin-top: 15px;
+}
+.google-btn a i {
+    color: #E8594E;
+    margin-right: 6px;
+}
+.google-btn a {
+    width: 100%;
+    text-align: center;
+    display: inline-block;
+    background: #4749ff38;
+    border-radius: 30px;
+    color: var(--headding-color);
+    font-size: 15px;
+    font-weight: 600;
+    padding: 12px 40px;
+    line-height: 25px;
+}
+.login-register-from-btom p {
+    font-size: 14px;
+}
