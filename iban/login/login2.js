@@ -76,7 +76,7 @@ document.querySelector(".button-1").addEventListener("click", async () => {
                         document.querySelector("#user").value = "";
                         document.querySelector("#pass").value = "";
                         localStorage.setItem("notes-online-id", doc.data().id);
-                        location.href = "../iban";
+                        location.href = "../";
                     } else if (userData.usernamestatus === "disable") {
                         Swal.fire("", "Your account is disabled Manually By Admin Medoz ⚠️", "error");
                     }
